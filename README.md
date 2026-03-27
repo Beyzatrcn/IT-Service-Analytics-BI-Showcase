@@ -1,23 +1,25 @@
 # IT Service Analytics BI Showcase
 
-A portfolio-ready Business Intelligence repository that demonstrates how an IT service reporting environment can be designed for finance, management, and service leadership.
+Dieses Repository zeigt beispielhaft, wie eine BI-Landschaft zur Analyse von IT-Services aus Sicht von Finance, Management und Service-Steuerung aufgebaut werden kann.
 
-The scenario is fictional and uses dummy data only. It shows how financial data from SAP, operational context from Microsoft Dynamics, and usage/support data from local SQL databases can be combined to create management transparency on IT services.
+Das Szenario ist vollständig fiktiv und verwendet ausschließlich Dummy-Daten. Ziel ist es, Transparenz über Kosten, Nutzung und Effizienz zentraler IT-Services zu schaffen.
 
-## Portfolio Objective
+## Zielsetzung
 
-This repository illustrates how a BI Specialist can:
+Das Repository demonstriert einen durchgängigen BI-Ansatz von den Quellsystemen bis zur Management-Auswertung:
 
-- translate a management question into a structured reporting model
-- connect multiple enterprise source systems into a coherent analytics layer
-- define business KPIs with clear formulas and ownership
-- design realistic SQL transformations and reporting views
-- prepare a Power BI concept for executive consumption
-- embed governance, data quality, and allocation logic into the solution
+- fachliche Einordnung des Business Cases
+- Definition zentraler KPIs
+- Zuordnung und Dokumentation der Quelldaten
+- SQL-basierte Transformationen und Reporting Views
+- Power-BI-Konzept für Management-Reporting
+- Governance-, Datenqualitäts- und Kostenallokationslogik
 
-## Business Scenario
+## Fachlicher Kontext
 
-The fictional company wants to understand the cost, usage, and efficiency of five core IT services:
+Im Beispiel möchte ein fiktives Unternehmen verstehen, wie sich zentrale IT-Services hinsichtlich Kosten, Nutzung und operativer Effizienz entwickeln.
+
+Betrachtet werden fünf Beispiel-Services:
 
 - VPN
 - Cloud Storage
@@ -25,33 +27,33 @@ The fictional company wants to understand the cost, usage, and efficiency of fiv
 - Identity & Access
 - Service Desk
 
-Management wants to answer questions such as:
+Typische Management-Fragen sind:
 
-- Which services consume the highest spend?
-- Which services create the highest operational workload?
-- How does cost evolve relative to business usage?
-- Which services look efficient, and which need action?
+- Welche Services verursachen die höchsten Kosten?
+- Welche Services erzeugen die höchste operative Belastung?
+- Wie entwickeln sich Kosten im Verhältnis zur Nutzung?
+- Welche Services wirken effizient und wo besteht Handlungsbedarf?
 
-## Source Landscape
+## Quellsysteme
 
-The showcase models a simple but realistic source architecture:
+Das Beispiel orientiert sich an einer realistischen Systemlandschaft:
 
-- SAP provides monthly cost postings by cost center and G/L account
-- Dynamics provides service catalog context and service request activity
-- Local SQL databases provide monthly usage and support ticket metrics
+- SAP liefert Finanzdaten und Kostenbuchungen
+- Microsoft Dynamics liefert Servicekatalog- und Prozesskontext
+- lokale SQL-Datenbanken liefern Nutzungs- und Supportdaten
 
-## KPI Scope
+## KPI-Umfang
 
-The main KPIs covered in this repository are:
+Die wichtigsten KPIs in diesem Repository sind:
 
-- Cost per service
-- Usage per service
-- Cost per user
-- Tickets per service
-- Cost per ticket
-- Service efficiency index
+- Kosten pro Service
+- Nutzung pro Service
+- Kosten pro User
+- Tickets pro Service
+- Kosten pro Ticket
+- Service Efficiency Index
 
-## Repository Structure
+## Repository-Struktur
 
 ```text
 IT-Service-Analytics-BI-Showcase/
@@ -80,44 +82,44 @@ IT-Service-Analytics-BI-Showcase/
     `-- 04_reporting_views.sql
 ```
 
-## End-to-End Data Flow
+## End-to-End-Datenfluss
 
-1. SAP cost postings are mapped to services using cost center logic.
-2. Shared IT costs are allocated to services using active-user shares.
-3. Dynamics enriches services with ownership and request context.
-4. Local SQL extracts provide usage and ticket volume by month.
-5. SQL transformations generate a monthly service mart.
-6. Reporting views expose business-ready KPI outputs for Power BI.
+1. SAP-Kostenbuchungen werden per Cost-Center-Logik Services zugeordnet.
+2. Gemeinkosten werden über aktive User auf Services verteilt.
+3. Dynamics liefert Servicekontext, Verantwortlichkeiten und Request-Informationen.
+4. Lokale SQL-Quellen liefern Nutzungs- und Ticketdaten auf Monatsebene.
+5. SQL-Transformationen erzeugen ein konsolidiertes Service-Monatsmodell.
+6. Reporting Views stellen die Daten für Power BI bereit.
 
-## Key Design Principles
+## Zentrale Designprinzipien
 
-- Business-first naming and definitions
-- Transparent allocation logic for shared cost
-- Lightweight, explainable SQL rather than over-engineered architecture
-- Management-ready reporting outputs
-- Dummy data only, with realistic structure and patterns
+- fachlich verständliche Benennung und KPI-Definitionen
+- transparente Logik für Shared-Cost-Allokation
+- nachvollziehbare und realistische SQL-Modellierung
+- Management-orientierte Reporting-Ausgabe
+- ausschließlich fiktive Daten mit plausibler Struktur
 
-## How To Use This Repository
+## Nutzung des Repositorys
 
-1. Review the business context and KPI documents in `docs/`.
-2. Run the SQL files in order:
+1. Zuerst die fachlichen Dokumente in `docs/` lesen.
+2. Danach die SQL-Dateien in dieser Reihenfolge ausführen:
    1. `sql/01_source_schema.sql`
    2. `sql/02_sample_data.sql`
    3. `sql/03_transformations.sql`
    4. `sql/04_reporting_views.sql`
-3. Connect Power BI to the final reporting views.
-4. Use the DAX examples as a starting point for the dashboard model.
+3. Anschließend Power BI mit den finalen Reporting Views verbinden.
+4. Die DAX-Beispiele als Ausgangspunkt für das Reporting-Modell verwenden.
 
-## Repository Highlights
+## Inhaltliche Schwerpunkte
 
-This repository demonstrates:
+Dieses Repository zeigt insbesondere:
 
-- end-to-end BI thinking from source systems to reporting outputs
-- integration of finance, service management, and operational usage data
-- clear KPI design for management reporting
-- realistic SQL transformations and reporting views
-- documented governance, allocation, and data quality logic
+- einen End-to-End-BI-Ansatz von Quellsystemen bis Reporting
+- die Verknüpfung von Finance-, Service-Management- und Nutzungsdaten
+- klar definierte KPIs für Management-Transparenz
+- realistische SQL-Transformationen und Reporting Views
+- dokumentierte Governance-, Mapping- und Datenqualitätslogik
 
-## Disclaimer
+## Hinweis
 
-All data, entities, findings, and business context in this repository are fictional and created for portfolio purposes only.
+Alle Daten, Ergebnisse, Annahmen und fachlichen Inhalte in diesem Repository sind fiktiv und dienen ausschließlich Portfolio-Zwecken.
