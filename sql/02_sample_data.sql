@@ -1,4 +1,4 @@
-INSERT INTO src_dynamics_service_catalog (
+﻿INSERT INTO src_dynamics_service_catalog (
     service_code,
     service_name,
     service_owner,
@@ -34,29 +34,29 @@ INSERT INTO src_sap_cost_postings (
     gl_account,
     cost_element_name,
     vendor_name,
-    amount_usd
+    amount_chf
 ) VALUES
-    (1, DATE '2026-01-01', '1000', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 18500.00),
-    (2, DATE '2026-01-01', '1000', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 24000.00),
-    (3, DATE '2026-01-01', '1000', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21000.00),
-    (4, DATE '2026-01-01', '1000', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16000.00),
-    (5, DATE '2026-01-01', '1000', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28000.00),
-    (6, DATE '2026-01-01', '1000', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3000.00),
-    (7, DATE '2026-01-01', '1000', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4500.00),
-    (8, DATE '2026-02-01', '1000', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 18750.00),
-    (9, DATE '2026-02-01', '1000', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 25500.00),
-    (10, DATE '2026-02-01', '1000', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21250.00),
-    (11, DATE '2026-02-01', '1000', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16400.00),
-    (12, DATE '2026-02-01', '1000', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28600.00),
-    (13, DATE '2026-02-01', '1000', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3200.00),
-    (14, DATE '2026-02-01', '1000', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4700.00),
-    (15, DATE '2026-03-01', '1000', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 19000.00),
-    (16, DATE '2026-03-01', '1000', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 26800.00),
-    (17, DATE '2026-03-01', '1000', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21400.00),
-    (18, DATE '2026-03-01', '1000', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16650.00),
-    (19, DATE '2026-03-01', '1000', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28950.00),
-    (20, DATE '2026-03-01', '1000', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3300.00),
-    (21, DATE '2026-03-01', '1000', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4800.00);
+    (1, DATE '2026-01-01', 'CH01', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 18500.00),
+    (2, DATE '2026-01-01', 'CH01', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 24000.00),
+    (3, DATE '2026-01-01', 'CH01', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21000.00),
+    (4, DATE '2026-01-01', 'CH01', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16000.00),
+    (5, DATE '2026-01-01', 'CH01', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28000.00),
+    (6, DATE '2026-01-01', 'CH01', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3000.00),
+    (7, DATE '2026-01-01', 'CH01', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4500.00),
+    (8, DATE '2026-02-01', 'CH01', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 18750.00),
+    (9, DATE '2026-02-01', 'CH01', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 25500.00),
+    (10, DATE '2026-02-01', 'CH01', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21250.00),
+    (11, DATE '2026-02-01', 'CH01', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16400.00),
+    (12, DATE '2026-02-01', 'CH01', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28600.00),
+    (13, DATE '2026-02-01', 'CH01', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3200.00),
+    (14, DATE '2026-02-01', 'CH01', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4700.00),
+    (15, DATE '2026-03-01', 'CH01', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 19000.00),
+    (16, DATE '2026-03-01', 'CH01', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 26800.00),
+    (17, DATE '2026-03-01', 'CH01', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21400.00),
+    (18, DATE '2026-03-01', 'CH01', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16650.00),
+    (19, DATE '2026-03-01', 'CH01', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28950.00),
+    (20, DATE '2026-03-01', 'CH01', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3300.00),
+    (21, DATE '2026-03-01', 'CH01', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4800.00);
 
 INSERT INTO src_dynamics_service_requests_monthly (
     request_month,
@@ -129,3 +129,4 @@ INSERT INTO src_sql_support_ticket_monthly (
     (DATE '2026-03-01', 'EMAIL', 69, 68, 65, 0, 7),
     (DATE '2026-03-01', 'IDENTITY_ACCESS', 110, 105, 87, 1, 18),
     (DATE '2026-03-01', 'SERVICE_DESK', 455, 448, 388, 2, 40);
+

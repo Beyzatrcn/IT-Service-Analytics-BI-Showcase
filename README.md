@@ -1,6 +1,6 @@
-# IT Service Analytics BI Showcase
+﻿# IT Service Analytics BI Showcase
 
-Dieses Repository zeigt beispielhaft, wie eine BI-Landschaft zur Analyse von IT-Services aus Sicht von Finance, Management und Service-Steuerung aufgebaut werden kann.
+Dieses Repository zeigt beispielhaft, wie eine BI-Landschaft zur Analyse von IT-Services aus Sicht von Finance, Management und Service-Steuerung in einem Schweizer Unternehmenskontext aufgebaut werden kann.
 
 Das Szenario ist vollständig fiktiv und verwendet ausschließlich Dummy-Daten. Ziel ist es, Transparenz über Kosten, Nutzung und Effizienz zentraler IT-Services zu schaffen.
 
@@ -17,7 +17,7 @@ Das Repository demonstriert einen durchgängigen BI-Ansatz von den Quellsystemen
 
 ## Fachlicher Kontext
 
-Im Beispiel möchte ein fiktives Unternehmen verstehen, wie sich zentrale IT-Services hinsichtlich Kosten, Nutzung und operativer Effizienz entwickeln.
+Im Beispiel möchte ein fiktives Unternehmen mit Sitz in der Schweiz verstehen, wie sich zentrale IT-Services hinsichtlich Kosten, Nutzung und operativer Effizienz entwickeln.
 
 Betrachtet werden fünf Beispiel-Services:
 
@@ -52,6 +52,8 @@ Die wichtigsten KPIs in diesem Repository sind:
 - Tickets pro Service
 - Kosten pro Ticket
 - Service Efficiency Index
+
+Alle Finanzwerte im Repository werden in Schweizer Franken (CHF) dargestellt.
 
 ## Repository-Struktur
 
@@ -148,3 +150,4 @@ Dieses Repository zeigt insbesondere:
 ## Hinweis
 
 Alle Daten, Ergebnisse, Annahmen und fachlichen Inhalte in diesem Repository sind fiktiv und dienen ausschließlich Portfolio-Zwecken.
+

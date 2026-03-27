@@ -1,8 +1,8 @@
-# Fallübersicht
+﻿# Fallübersicht
 
 ## Szenario
 
-Ein fiktives mittelständisches Unternehmen betreibt eine zentrale interne IT-Organisation, die grundlegende Workplace- und Support-Services für das gesamte Unternehmen bereitstellt. Finance und Management möchten besser verstehen, wie sich IT-Servicekosten in geschäftliche Nutzung und operativen Aufwand übersetzen.
+Ein fiktives mittelständisches Unternehmen mit Sitz in der Schweiz betreibt eine zentrale interne IT-Organisation, die grundlegende Workplace- und Support-Services für das gesamte Unternehmen bereitstellt. Finance und Management möchten besser verstehen, wie sich IT-Servicekosten in geschäftliche Nutzung und operativen Aufwand übersetzen.
 
 Die aktuelle Reporting-Landschaft ist fragmentiert:
 
@@ -88,7 +88,7 @@ Das BI-Design folgt einem pragmatischen Muster:
 ## Annahmen
 
 - Alle Werte in diesem Repository sind Dummy-Daten.
-- Die Währung ist der Einfachheit halber USD.
+- Die Währung ist der Einfachheit halber CHF.
 - Shared Cost wird anhand des Anteils aktiver User allokiert.
 - Monatliche Granularität ist für Management-Reporting ausreichend.
 - Das Beispiel-SQL verwendet aus Gründen der Lesbarkeit eine PostgreSQL-nahe Syntax.
@@ -102,3 +102,4 @@ Mit diesem Modell kann das Management:
 - supportintensive Prozesse gezielt hinterfragen
 - Automatisierung oder Vertragsoptimierung priorisieren
 - Budgetdiskussionen mit servicebezogenen Fakten führen
+

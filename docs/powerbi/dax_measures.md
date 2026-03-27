@@ -1,4 +1,4 @@
-# DAX-Beispiele
+﻿# DAX-Beispiele
 
 Die folgenden Beispiele gehen davon aus, dass die zentrale Faktentabelle in Power BI `'Service Monthly'` heißt und aus `vw_bi_service_monthly` geladen wird.
 
@@ -6,17 +6,17 @@ Die folgenden Beispiele gehen davon aus, dass die zentrale Faktentabelle in Powe
 
 ```DAX
 Gesamtkosten :=
-SUM ( 'Service Monthly'[total_cost_usd] )
+SUM ( 'Service Monthly'[total_cost_chf] )
 ```
 
 ```DAX
 Direkte Kosten :=
-SUM ( 'Service Monthly'[direct_cost_usd] )
+SUM ( 'Service Monthly'[direct_cost_chf] )
 ```
 
 ```DAX
 Allokierte Gemeinkosten :=
-SUM ( 'Service Monthly'[shared_cost_usd] )
+SUM ( 'Service Monthly'[shared_cost_chf] )
 ```
 
 ## Nutzungs- und Supportkennzahlen
@@ -118,3 +118,4 @@ TOPN (
 - `Kosten pro User` unterstützt den Finance-Vergleich über Services mit breiter Mitarbeiterreichweite.
 - `Kosten pro Ticket` sollte immer zusammen mit Ticketkomplexität und Service-Kritikalität betrachtet werden.
 - `Effizienzindex Durchschnitt` eignet sich vor allem als richtungsweisender Management-Indikator und nicht als Ersatz für operative Ursachenanalyse.
+

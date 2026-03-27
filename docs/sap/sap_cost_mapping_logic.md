@@ -1,4 +1,4 @@
-# SAP-Kostenzuordnungslogik
+﻿# SAP-Kostenzuordnungslogik
 
 ## Zweck
 
@@ -71,9 +71,9 @@ In einer produktiven Lösung könnten je nach Service auch spezifischere Treiber
 
 ## Beispiel für die Allokationslogik
 
-Wenn die Shared Costs im März USD 8.100 betragen und VPN 860 aktive User von insgesamt 4.430 hat, entfällt auf VPN:
+Wenn die Shared Costs im März CHF 8.100 betragen und VPN 860 aktive User von insgesamt 4.430 hat, entfällt auf VPN:
 
-`8,100 * (860 / 4,430) = 1,572.23 USD`
+`8,100 * (860 / 4,430) = 1,572.23 CHF`
 
 ## Erwartete Kontrollen
 
@@ -91,3 +91,4 @@ Das finale Management-Dashboard sollte immer die Unterscheidung ermöglichen zwi
 - gesamten Servicekosten
 
 Das stärkt das Vertrauen in die Zahlen und reduziert unnötige Diskussionen darüber, ob ein Kostenblock operativ verantwortet oder nur zur Transparenz allokiert wurde.
+

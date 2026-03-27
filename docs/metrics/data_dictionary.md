@@ -1,4 +1,4 @@
-# Datenkatalog
+﻿# Datenkatalog
 
 Dieser Datenkatalog beschreibt die wichtigsten Quellentitäten sowie den finalen Reporting Mart für Power BI.
 
@@ -13,7 +13,7 @@ Dieser Datenkatalog beschreibt die wichtigsten Quellentitäten sowie den finalen
 | gl_account | varchar(20) | Sachkonto zur finanziellen Klassifikation |
 | cost_element_name | varchar(100) | Lesbare Beschreibung der Buchung |
 | vendor_name | varchar(100) | Optionaler externer Lieferant |
-| amount_usd | numeric(12,2) | Buchungsbetrag in USD |
+| amount_chf | numeric(12,2) | Buchungsbetrag in CHF |
 
 ## Quelltabelle: `src_dynamics_service_catalog`
 
@@ -78,9 +78,9 @@ Dieser Datenkatalog beschreibt die wichtigsten Quellentitäten sowie den finalen
 | service_name | varchar(100) | Fachlicher Service-Name |
 | service_owner | varchar(100) | Verantwortlicher Owner |
 | service_category | varchar(50) | Service-Gruppe |
-| total_cost_usd | numeric(14,2) | Gesamtkosten des Monats inklusive Shared-Cost-Allokation |
-| direct_cost_usd | numeric(14,2) | Nur direkt zugeordnete Kosten |
-| shared_cost_usd | numeric(14,2) | Allokierte Shared Costs |
+| total_cost_chf | numeric(14,2) | Gesamtkosten des Monats inklusive Shared-Cost-Allokation |
+| direct_cost_chf | numeric(14,2) | Nur direkt zugeordnete Kosten |
+| shared_cost_chf | numeric(14,2) | Allokierte Shared Costs |
 | active_users | integer | Aktive User im Monat |
 | usage_volume | numeric(18,2) | Service-spezifische Nutzungskennzahl |
 | usage_unit | varchar(50) | Maßeinheit der Nutzung |
@@ -99,3 +99,4 @@ Dieser Datenkatalog beschreibt die wichtigsten Quellentitäten sowie den finalen
 ## Standard des fachlichen Schlüssels
 
 Der zentrale fachliche Schlüssel ist `service_code`. Alle Quellen werden vor der Reporting-Erstellung auf diesen Identifier ausgerichtet.
+

@@ -1,6 +1,8 @@
-# Power-BI-Verbindung mit PostgreSQL
+﻿# Power-BI-Verbindung mit PostgreSQL
 
 Dieses Showcase kann direkt aus Power BI mit einer lokalen PostgreSQL-Datenbank verbunden werden.
+
+Alle Kostenfelder sind auf CHF ausgelegt und sollten in Power BI ebenfalls als Schweizer Franken formatiert werden.
 
 ## Lokale Verbindungsdaten
 
@@ -32,3 +34,4 @@ Zum Start der lokalen Datenbank und zum Laden der Showcase-Daten:
 ```powershell
 .\scripts\setup_postgres.ps1
 ```
+

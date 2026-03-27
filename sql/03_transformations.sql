@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW stg_service_catalog AS
+﻿CREATE OR REPLACE VIEW stg_service_catalog AS
 SELECT
     service_code,
     service_name,
@@ -14,7 +14,7 @@ SELECT
     p.posting_month AS report_month,
     m.service_code,
     m.cost_bucket,
-    SUM(p.amount_usd) AS direct_cost_usd
+    SUM(p.amount_chf) AS direct_cost_chf
 FROM src_sap_cost_postings p
 JOIN ref_sap_cost_center_mapping m
     ON p.cost_center = m.cost_center
@@ -27,7 +27,7 @@ GROUP BY
 CREATE OR REPLACE VIEW stg_sap_shared_costs AS
 SELECT
     p.posting_month AS report_month,
-    SUM(p.amount_usd) AS shared_cost_pool_usd
+    SUM(p.amount_chf) AS shared_cost_pool_chf
 FROM src_sap_cost_postings p
 JOIN ref_sap_cost_center_mapping m
     ON p.cost_center = m.cost_center
@@ -53,13 +53,13 @@ monthly_totals AS (
 SELECT
     u.report_month,
     u.service_code,
-    s.shared_cost_pool_usd,
+    s.shared_cost_pool_chf,
     u.active_users,
     t.total_active_users,
     ROUND(
-        s.shared_cost_pool_usd * (u.active_users::NUMERIC / NULLIF(t.total_active_users, 0)),
+        s.shared_cost_pool_chf * (u.active_users::NUMERIC / NULLIF(t.total_active_users, 0)),
         2
-    ) AS shared_cost_usd
+    ) AS shared_cost_chf
 FROM monthly_usage u
 JOIN monthly_totals t
     ON u.report_month = t.report_month
@@ -71,7 +71,7 @@ WITH direct_costs AS (
     SELECT
         report_month,
         service_code,
-        SUM(direct_cost_usd) AS direct_cost_usd
+        SUM(direct_cost_chf) AS direct_cost_chf
     FROM stg_sap_direct_costs
     GROUP BY
         report_month,
@@ -81,7 +81,7 @@ shared_costs AS (
     SELECT
         report_month,
         service_code,
-        SUM(shared_cost_usd) AS shared_cost_usd
+        SUM(shared_cost_chf) AS shared_cost_chf
     FROM stg_shared_cost_allocation
     GROUP BY
         report_month,
@@ -90,9 +90,9 @@ shared_costs AS (
 SELECT
     c.service_code,
     c.report_month,
-    COALESCE(d.direct_cost_usd, 0) AS direct_cost_usd,
-    COALESCE(s.shared_cost_usd, 0) AS shared_cost_usd,
-    COALESCE(d.direct_cost_usd, 0) + COALESCE(s.shared_cost_usd, 0) AS total_cost_usd
+    COALESCE(d.direct_cost_chf, 0) AS direct_cost_chf,
+    COALESCE(s.shared_cost_chf, 0) AS shared_cost_chf,
+    COALESCE(d.direct_cost_chf, 0) + COALESCE(s.shared_cost_chf, 0) AS total_cost_chf
 FROM (
     SELECT DISTINCT
         usage_month AS report_month,
@@ -115,9 +115,9 @@ SELECT
     sc.service_category,
     sc.unit_of_measure,
     sc.business_criticality,
-    c.direct_cost_usd,
-    c.shared_cost_usd,
-    c.total_cost_usd,
+    c.direct_cost_chf,
+    c.shared_cost_chf,
+    c.total_cost_chf,
     u.active_users,
     u.usage_volume,
     u.usage_unit,
@@ -130,13 +130,13 @@ SELECT
     t.sla_met_tickets,
     t.major_incidents,
     t.backlog_tickets,
-    ROUND(c.total_cost_usd / NULLIF(u.active_users, 0), 2) AS cost_per_user,
-    ROUND(c.total_cost_usd / NULLIF(t.resolved_tickets, 0), 2) AS cost_per_ticket,
+    ROUND(c.total_cost_chf / NULLIF(u.active_users, 0), 2) AS cost_per_user,
+    ROUND(c.total_cost_chf / NULLIF(t.resolved_tickets, 0), 2) AS cost_per_ticket,
     ROUND((t.opened_tickets::NUMERIC / NULLIF(u.active_users, 0)) * 100, 2) AS tickets_per_100_users,
     ROUND((t.sla_met_tickets::NUMERIC / NULLIF(t.resolved_tickets, 0)) * 100, 2) AS sla_met_pct,
     ROUND((r.automated_requests::NUMERIC / NULLIF(r.total_requests, 0)) * 100, 2) AS automation_rate_pct,
     ROUND(
-        ((u.active_users::NUMERIC / NULLIF(c.total_cost_usd, 0)) * 1000) /
+        ((u.active_users::NUMERIC / NULLIF(c.total_cost_chf, 0)) * 1000) /
         NULLIF(1 + ((t.opened_tickets::NUMERIC / NULLIF(u.active_users, 0)) * 100), 0),
         2
     ) AS service_efficiency_index
@@ -152,3 +152,4 @@ LEFT JOIN src_dynamics_service_requests_monthly r
 LEFT JOIN src_sql_support_ticket_monthly t
     ON u.usage_month = t.ticket_month
    AND u.service_code = t.service_code;
+

@@ -1,4 +1,4 @@
-DROP VIEW IF EXISTS vw_bi_management_overview;
+﻿DROP VIEW IF EXISTS vw_bi_management_overview;
 DROP VIEW IF EXISTS vw_bi_service_summary;
 DROP VIEW IF EXISTS vw_bi_service_monthly;
 DROP VIEW IF EXISTS mart_service_monthly;
@@ -23,7 +23,7 @@ CREATE TABLE src_sap_cost_postings (
     gl_account VARCHAR(20) NOT NULL,
     cost_element_name VARCHAR(100) NOT NULL,
     vendor_name VARCHAR(100),
-    amount_usd NUMERIC(12, 2) NOT NULL
+    amount_chf NUMERIC(12, 2) NOT NULL
 );
 
 CREATE TABLE src_dynamics_service_catalog (
@@ -72,3 +72,4 @@ CREATE TABLE src_sql_support_ticket_monthly (
     backlog_tickets INTEGER NOT NULL,
     PRIMARY KEY (ticket_month, service_code)
 );
+

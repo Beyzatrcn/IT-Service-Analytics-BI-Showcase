@@ -1,4 +1,4 @@
-# Quell-zu-Ziel-Mapping
+﻿# Quell-zu-Ziel-Mapping
 
 Dieses Dokument beschreibt, wie Quellfelder in die finale monatliche Reporting-Schicht überführt werden.
 
@@ -11,9 +11,9 @@ Dieses Dokument beschreibt, wie Quellfelder in die finale monatliche Reporting-S
 | service_name | Dynamics | `src_dynamics_service_catalog.service_name` | Direkte Zuordnung |
 | service_owner | Dynamics | `src_dynamics_service_catalog.service_owner` | Direkte Zuordnung |
 | service_category | Dynamics | `src_dynamics_service_catalog.service_category` | Direkte Zuordnung |
-| direct_cost_usd | SAP | `src_sap_cost_postings.amount_usd` | Summe direkt zugeordneter Buchungen pro Cost Center |
-| shared_cost_usd | SAP + lokale SQL | `src_sap_cost_postings.amount_usd`, `src_sql_service_usage_monthly.active_users` | Allokation gemeinsamer Buchungen anhand des Anteils aktiver User pro Monat |
-| total_cost_usd | Abgeleitet | Ergebnisse aus direkter und gemeinsamer Kostenlogik | `direct_cost_usd + shared_cost_usd` |
+| direct_cost_chf | SAP | `src_sap_cost_postings.amount_chf` | Summe direkt zugeordneter Buchungen pro Cost Center |
+| shared_cost_chf | SAP + lokale SQL | `src_sap_cost_postings.amount_chf`, `src_sql_service_usage_monthly.active_users` | Allokation gemeinsamer Buchungen anhand des Anteils aktiver User pro Monat |
+| total_cost_chf | Abgeleitet | Ergebnisse aus direkter und gemeinsamer Kostenlogik | `direct_cost_chf + shared_cost_chf` |
 | active_users | Lokale SQL | `src_sql_service_usage_monthly.active_users` | Direkte Zuordnung |
 | usage_volume | Lokale SQL | `src_sql_service_usage_monthly.usage_volume` | Direkte Zuordnung |
 | usage_unit | Lokale SQL | `src_sql_service_usage_monthly.usage_unit` | Direkte Zuordnung |
@@ -23,10 +23,10 @@ Dieses Dokument beschreibt, wie Quellfelder in die finale monatliche Reporting-S
 | total_requests | Dynamics | `src_dynamics_service_requests_monthly.total_requests` | Direkte Zuordnung |
 | automated_requests | Dynamics | `src_dynamics_service_requests_monthly.automated_requests` | Direkte Zuordnung |
 | automation_rate_pct | Dynamics | `automated_requests`, `total_requests` | `automated_requests / total_requests * 100` |
-| cost_per_user | Abgeleitet | Kosten- und Nutzungsfelder | `total_cost_usd / active_users` |
-| cost_per_ticket | Abgeleitet | Kosten- und Supportfelder | `total_cost_usd / resolved_tickets` |
+| cost_per_user | Abgeleitet | Kosten- und Nutzungsfelder | `total_cost_chf / active_users` |
+| cost_per_ticket | Abgeleitet | Kosten- und Supportfelder | `total_cost_chf / resolved_tickets` |
 | tickets_per_100_users | Abgeleitet | Support- und Nutzungsfelder | `opened_tickets / active_users * 100` |
-| service_efficiency_index | Abgeleitet | Kosten, aktive User und Ticketintensität | `((active_users / total_cost_usd) * 1000) / (1 + tickets_per_100_users)` |
+| service_efficiency_index | Abgeleitet | Kosten, aktive User und Ticketintensität | `((active_users / total_cost_chf) * 1000) / (1 + tickets_per_100_users)` |
 
 ## Transformationsregeln
 
@@ -65,3 +65,4 @@ Das Beispielmodell schließt bewusst Folgendes aus:
 - Chargeback-Logik auf Fachbereichsebene
 
 Diese Punkte wären in einer produktiven Lösung sinnvolle nächste Ausbaustufen, sind für ein managementorientiertes Portfolio-Showcase jedoch nicht zwingend erforderlich.
+
