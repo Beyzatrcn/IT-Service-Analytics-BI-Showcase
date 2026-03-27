@@ -1,56 +1,56 @@
-# Stakeholder Questions
+# Stakeholder-Fragen
 
-## Executive Lens
+## Management-Perspektive
 
-This repository is designed around questions that a management audience would realistically ask.
+Dieses Repository ist an Fragen ausgerichtet, die ein Management-Publikum in der Praxis tatsächlich stellen würde.
 
-## CFO And Finance Business Partner Questions
+## Fragen von CFO und Finance Business Partnern
 
-- What is the monthly cost of each IT service?
-- Which services have the highest cost per active user?
-- Which services show the strongest cost growth trend?
-- How much shared IT cost is embedded in each service?
-- Which services require cost optimization attention first?
+- Wie hoch sind die monatlichen Kosten je IT-Service?
+- Welche Services haben die höchsten Kosten pro aktivem User?
+- Welche Services zeigen den stärksten Kostenanstieg?
+- Wie viel Shared Cost ist in jedem Service enthalten?
+- Bei welchen Services sollte zuerst auf Kostenoptimierung geschaut werden?
 
-## CIO And IT Leadership Questions
+## Fragen von CIO und IT-Leitung
 
-- Which services are heavily used and strategically important?
-- Which services have stable cost relative to demand growth?
-- Where are support volumes disproportionately high?
-- Which service owners should be asked for improvement plans?
-- Which services are scalable, and which look structurally inefficient?
+- Welche Services sind stark genutzt und strategisch relevant?
+- Welche Services zeigen stabile Kosten im Verhältnis zum Nachfragewachstum?
+- Wo ist das Supportvolumen überproportional hoch?
+- Von welchen Service Ownern sollten Verbesserungspläne eingefordert werden?
+- Welche Services sind gut skalierbar und welche wirken strukturell ineffizient?
 
-## Service Owner Questions
+## Fragen von Service Ownern
 
-- How many users consume my service each month?
-- How many tickets are raised against my service?
-- Is my cost per user improving or worsening?
-- How much of my total cost is direct versus allocated shared cost?
-- Does automation activity reduce operational effort over time?
+- Wie viele User nutzen meinen Service pro Monat?
+- Wie viele Tickets entstehen für meinen Service?
+- Verbessern oder verschlechtern sich meine Kosten pro User?
+- Wie viel meiner Gesamtkosten ist direkt zugeordnet und wie viel allokiert?
+- Reduziert Automatisierung den operativen Aufwand über die Zeit?
 
-## Operations Manager Questions
+## Fragen von Operations Managern
 
-- Which services generate the highest ticket workload?
-- Where are SLA achievement or ticket intensity under pressure?
-- Which request types are good candidates for automation?
-- Which service areas create avoidable manual effort?
+- Welche Services erzeugen die höchste Ticketlast?
+- Wo stehen SLA-Erfüllung oder Ticketintensität unter Druck?
+- Welche Request-Typen eignen sich besonders für Automatisierung?
+- In welchen Servicebereichen entsteht vermeidbarer manueller Aufwand?
 
-## Decision Use Cases
+## Entscheidungsrelevante Anwendungsfälle
 
-The reporting model supports decisions such as:
+Das Reporting-Modell unterstützt Entscheidungen wie:
 
-- renegotiating license or hosting spend
-- reviewing storage growth policies
-- prioritizing self-service in Identity & Access
-- assessing whether Service Desk staffing is aligned with demand
-- challenging whether shared costs are allocated fairly
+- Neuverhandlung von Lizenz- oder Hosting-Kosten
+- Überprüfung von Storage-Wachstumsrichtlinien
+- Priorisierung von Self-Service in Identity & Access
+- Bewertung, ob die Service-Desk-Kapazität zur Nachfrage passt
+- Hinterfragen, ob Shared Costs fair verteilt sind
 
-## Reporting Design Implication
+## Konsequenz für das Reporting-Design
 
-Because the audience is mixed, the solution needs:
+Da die Zielgruppe heterogen ist, muss die Lösung Folgendes leisten:
 
-- finance-grade cost transparency
-- simple, explainable KPIs
-- drill-down by service and month
-- a clear distinction between direct and allocated cost
-- documentation that business stakeholders can understand without technical depth
+- Kostentransparenz auf Finance-Niveau
+- einfache und nachvollziehbare KPIs
+- Drill-down nach Service und Monat
+- klare Trennung zwischen direkten und allokierten Kosten
+- Dokumentation, die auch ohne tiefe technische Kenntnisse verständlich ist

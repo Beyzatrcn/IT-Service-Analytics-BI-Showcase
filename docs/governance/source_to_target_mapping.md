@@ -1,38 +1,38 @@
-# Source To Target Mapping
+# Quell-zu-Ziel-Mapping
 
-This document summarizes how source fields are transformed into the final monthly reporting layer.
+Dieses Dokument beschreibt, wie Quellfelder in die finale monatliche Reporting-Schicht überführt werden.
 
-## Mapping Overview
+## Mapping-Übersicht
 
-| Target Field | Source System | Source Table / Field | Transformation Logic |
+| Zielfeld | Quellsystem | Quelltabelle / Feld | Transformationslogik |
 |---|---|---|---|
-| report_month | Multiple | SAP, Dynamics, local SQL month fields | Standardized to month-level reporting date |
-| service_code | Dynamics / local SQL / mapping table | `service_code` and `ref_sap_cost_center_mapping.service_code` | Unified business key |
-| service_name | Dynamics | `src_dynamics_service_catalog.service_name` | Direct mapping |
-| service_owner | Dynamics | `src_dynamics_service_catalog.service_owner` | Direct mapping |
-| service_category | Dynamics | `src_dynamics_service_catalog.service_category` | Direct mapping |
-| direct_cost_usd | SAP | `src_sap_cost_postings.amount_usd` | Sum of direct postings mapped by cost center |
-| shared_cost_usd | SAP + local SQL | `src_sap_cost_postings.amount_usd`, `src_sql_service_usage_monthly.active_users` | Shared postings allocated by active-user share per month |
-| total_cost_usd | Derived | Direct and shared cost outputs | `direct_cost_usd + shared_cost_usd` |
-| active_users | Local SQL | `src_sql_service_usage_monthly.active_users` | Direct mapping |
-| usage_volume | Local SQL | `src_sql_service_usage_monthly.usage_volume` | Direct mapping |
-| usage_unit | Local SQL | `src_sql_service_usage_monthly.usage_unit` | Direct mapping |
-| opened_tickets | Local SQL | `src_sql_support_ticket_monthly.opened_tickets` | Direct mapping |
-| resolved_tickets | Local SQL | `src_sql_support_ticket_monthly.resolved_tickets` | Direct mapping |
-| sla_met_pct | Local SQL | `sla_met_tickets`, `resolved_tickets` | `sla_met_tickets / resolved_tickets * 100` |
-| total_requests | Dynamics | `src_dynamics_service_requests_monthly.total_requests` | Direct mapping |
-| automated_requests | Dynamics | `src_dynamics_service_requests_monthly.automated_requests` | Direct mapping |
+| report_month | Mehrere | Monatsfelder aus SAP, Dynamics und lokalen SQL-Quellen | Standardisierung auf einen Reporting-Monat |
+| service_code | Dynamics / lokale SQL / Mapping-Tabelle | `service_code` und `ref_sap_cost_center_mapping.service_code` | Einheitlicher fachlicher Schlüssel |
+| service_name | Dynamics | `src_dynamics_service_catalog.service_name` | Direkte Zuordnung |
+| service_owner | Dynamics | `src_dynamics_service_catalog.service_owner` | Direkte Zuordnung |
+| service_category | Dynamics | `src_dynamics_service_catalog.service_category` | Direkte Zuordnung |
+| direct_cost_usd | SAP | `src_sap_cost_postings.amount_usd` | Summe direkt zugeordneter Buchungen pro Cost Center |
+| shared_cost_usd | SAP + lokale SQL | `src_sap_cost_postings.amount_usd`, `src_sql_service_usage_monthly.active_users` | Allokation gemeinsamer Buchungen anhand des Anteils aktiver User pro Monat |
+| total_cost_usd | Abgeleitet | Ergebnisse aus direkter und gemeinsamer Kostenlogik | `direct_cost_usd + shared_cost_usd` |
+| active_users | Lokale SQL | `src_sql_service_usage_monthly.active_users` | Direkte Zuordnung |
+| usage_volume | Lokale SQL | `src_sql_service_usage_monthly.usage_volume` | Direkte Zuordnung |
+| usage_unit | Lokale SQL | `src_sql_service_usage_monthly.usage_unit` | Direkte Zuordnung |
+| opened_tickets | Lokale SQL | `src_sql_support_ticket_monthly.opened_tickets` | Direkte Zuordnung |
+| resolved_tickets | Lokale SQL | `src_sql_support_ticket_monthly.resolved_tickets` | Direkte Zuordnung |
+| sla_met_pct | Lokale SQL | `sla_met_tickets`, `resolved_tickets` | `sla_met_tickets / resolved_tickets * 100` |
+| total_requests | Dynamics | `src_dynamics_service_requests_monthly.total_requests` | Direkte Zuordnung |
+| automated_requests | Dynamics | `src_dynamics_service_requests_monthly.automated_requests` | Direkte Zuordnung |
 | automation_rate_pct | Dynamics | `automated_requests`, `total_requests` | `automated_requests / total_requests * 100` |
-| cost_per_user | Derived | Cost and usage fields | `total_cost_usd / active_users` |
-| cost_per_ticket | Derived | Cost and support fields | `total_cost_usd / resolved_tickets` |
-| tickets_per_100_users | Derived | Support and usage fields | `opened_tickets / active_users * 100` |
-| service_efficiency_index | Derived | Cost, active users, ticket intensity | `((active_users / total_cost_usd) * 1000) / (1 + tickets_per_100_users)` |
+| cost_per_user | Abgeleitet | Kosten- und Nutzungsfelder | `total_cost_usd / active_users` |
+| cost_per_ticket | Abgeleitet | Kosten- und Supportfelder | `total_cost_usd / resolved_tickets` |
+| tickets_per_100_users | Abgeleitet | Support- und Nutzungsfelder | `opened_tickets / active_users * 100` |
+| service_efficiency_index | Abgeleitet | Kosten, aktive User und Ticketintensität | `((active_users / total_cost_usd) * 1000) / (1 + tickets_per_100_users)` |
 
-## Transformation Rules
+## Transformationsregeln
 
-### Rule 1: Standardize Service Codes
+### Regel 1: Service-Codes standardisieren
 
-All sources must align to the common service key:
+Alle Quellen müssen auf den gemeinsamen Service-Schlüssel ausgerichtet werden:
 
 - `VPN`
 - `CLOUD_STORAGE`
@@ -40,28 +40,28 @@ All sources must align to the common service key:
 - `IDENTITY_ACCESS`
 - `SERVICE_DESK`
 
-### Rule 2: Separate Direct And Shared SAP Cost
+### Regel 2: Direkte und Shared SAP Costs trennen
 
-SAP postings are split into:
+SAP-Buchungen werden in zwei Gruppen aufgeteilt:
 
-- direct service cost, mapped from service cost centers
-- shared cost, posted to a common cost center and allocated downstream
+- direkte Servicekosten, die aus servicebezogenen Cost Centern gemappt werden
+- Shared Costs, die auf einem gemeinsamen Cost Center liegen und nachgelagert verteilt werden
 
-### Rule 3: Allocate Shared Cost Transparently
+### Regel 3: Shared Costs transparent allokieren
 
-The allocation driver in this sample is monthly active users. This supports a simple and explainable cost distribution for management reporting.
+Der Allokationstreiber in diesem Beispiel sind aktive User pro Monat. Das ermöglicht eine einfache und nachvollziehbare Kostenverteilung für Management-Reporting.
 
-### Rule 4: Keep Usage Units Service-Specific
+### Regel 4: Nutzungsmaße service-spezifisch belassen
 
-Usage is not forced into a false common unit. Instead, the final reporting layer preserves the service-appropriate usage unit while enabling common financial comparison through cost-based KPIs.
+Die Nutzung wird nicht künstlich in eine gemeinsame Einheit überführt. Stattdessen behält die finale Reporting-Schicht die jeweils passende Nutzungslogik des Services bei und ermöglicht den Vergleich über kostenbasierte KPIs.
 
-## Exclusions
+## Nicht abgedeckte Themen
 
-The sample model intentionally excludes:
+Das Beispielmodell schließt bewusst Folgendes aus:
 
-- detailed ticket-level drill-down
-- invoice-level vendor reconciliation
-- daily event granularity
-- chargeback logic to business departments
+- detaillierte Ticket-Drill-downs auf Einzelfallebene
+- vendor- oder rechnungsbezogene Abstimmungen
+- tägliche Event-Granularität
+- Chargeback-Logik auf Fachbereichsebene
 
-These would be valid next steps in a production implementation, but they are not required for a management-facing portfolio showcase.
+Diese Punkte wären in einer produktiven Lösung sinnvolle nächste Ausbaustufen, sind für ein managementorientiertes Portfolio-Showcase jedoch nicht zwingend erforderlich.

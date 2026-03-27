@@ -1,99 +1,99 @@
-# Power BI Dashboard Concept
+# Power-BI-Dashboard-Konzept
 
-## Dashboard Goal
+## Ziel des Dashboards
 
-Provide a compact management dashboard that makes IT services comparable on cost, usage, and operational efficiency.
+Ein kompaktes Management-Dashboard bereitstellen, das IT-Services hinsichtlich Kosten, Nutzung und operativer Effizienz vergleichbar macht.
 
-## Target Audience
+## Zielgruppe
 
-- CFO and finance business partners
-- CIO and IT leadership
-- service owners
+- CFO und Finance Business Partner
+- CIO und IT-Leitung
+- Service Owner
 
-## Recommended Report Pages
+## Empfohlene Berichtsseiten
 
-## 1. Executive Overview
+## 1. Management-Übersicht
 
-Purpose:
-Present the core portfolio view in one page.
+Zweck:
+Darstellung der zentralen Portfoliosicht auf einer Seite.
 
-Suggested visuals:
+Empfohlene Visualisierungen:
 
-- KPI cards:
-  - total IT service cost
-  - total active users
-  - total opened tickets
-  - portfolio average cost per user
-- clustered column chart: total cost by service
-- line chart: monthly total cost trend
-- scatter chart: cost per user versus tickets per 100 users
-- matrix: service with direct cost, shared cost, cost per user, cost per ticket, efficiency index
+- KPI-Karten:
+  - gesamte IT-Servicekosten
+  - gesamte aktive User
+  - gesamte eröffnete Tickets
+  - durchschnittliche Portfolio-Kosten pro User
+- gruppiertes Säulendiagramm: Gesamtkosten nach Service
+- Liniendiagramm: monatlicher Gesamtkostentrend
+- Streudiagramm: Kosten pro User versus Tickets pro 100 User
+- Matrix: Service mit direkten Kosten, allokierten Shared Costs, Kosten pro User, Kosten pro Ticket und Effizienzindex
 
-## 2. Service Deep Dive
+## 2. Service-Detailanalyse
 
-Purpose:
-Allow a manager to inspect one service over time.
+Zweck:
+Einem Manager ermöglichen, einen einzelnen Service im Zeitverlauf zu analysieren.
 
-Suggested visuals:
+Empfohlene Visualisierungen:
 
-- line chart: total cost, active users, and tickets by month
-- decomposition tree: total cost by cost bucket
-- bar chart: request automation rate by month
-- gauge or KPI: availability percentage
+- Liniendiagramm: Gesamtkosten, aktive User und Tickets nach Monat
+- Zerlegungsbaum: Gesamtkosten nach Kostenart
+- Balkendiagramm: Automatisierungsquote von Requests nach Monat
+- Tacho oder KPI: Verfügbarkeitsquote
 
-## 3. Support And Efficiency
+## 3. Support und Effizienz
 
-Purpose:
-Focus on support burden and operational leverage.
+Zweck:
+Fokus auf Supportbelastung und operativen Hebel.
 
-Suggested visuals:
+Empfohlene Visualisierungen:
 
-- bar chart: opened tickets by service
-- bar chart: cost per ticket by service
-- line chart: tickets per 100 users trend
-- table: service owner, SLA %, automation rate, efficiency index
+- Balkendiagramm: eröffnete Tickets nach Service
+- Balkendiagramm: Kosten pro Ticket nach Service
+- Liniendiagramm: Trend der Tickets pro 100 User
+- Tabelle: Service Owner, SLA %, Automatisierungsquote, Effizienzindex
 
-## 4. Cost Allocation Transparency
+## 4. Transparenz der Kostenallokation
 
-Purpose:
-Show how much cost is direct versus shared.
+Zweck:
+Transparent darstellen, wie viel Kosten direkt und wie viel gemeinsam allokiert sind.
 
-Suggested visuals:
+Empfohlene Visualisierungen:
 
-- stacked column chart: direct cost vs shared cost by service
-- waterfall chart: total shared cost allocation by service
-- table: allocation driver and monthly active-user share
+- gestapeltes Säulendiagramm: direkte Kosten vs Shared Costs nach Service
+- Wasserfalldiagramm: Verteilung der Shared Costs nach Service
+- Tabelle: Allokationstreiber und monatlicher Anteil aktiver User
 
-## Core Filters
+## Zentrale Filter
 
-- reporting month
-- service
-- service owner
-- service category
+- Reporting-Monat
+- Service
+- Service Owner
+- Servicekategorie
 
-## Design Notes
+## Design-Hinweise
 
-- use business-friendly labels, not technical table names
-- highlight exceptions in amber and red
-- keep finance views and operational views on the same semantic model
-- provide tooltip explanations for complex KPIs such as efficiency index
+- fachlich verständliche Bezeichnungen statt technischer Tabellennamen verwenden
+- Auffälligkeiten in Gelb und Rot hervorheben
+- Finance- und Operations-Sicht auf demselben semantischen Modell halten
+- Tooltips für komplexere KPIs wie den Effizienzindex bereitstellen
 
-## Data Model Recommendation
+## Empfehlung für das Datenmodell
 
-Suggested Power BI model:
+Empfohlenes Power-BI-Modell:
 
-- Fact table:
+- Faktentabelle:
   - `vw_bi_service_monthly`
-- Supporting summary table:
+- unterstützende Übersichtstabelle:
   - `vw_bi_service_summary`
-- Date dimension:
-  - separate calendar table in Power BI
+- Datumsdimension:
+  - separate Kalendertabelle in Power BI
 
-## Storyline For A Hiring Manager
+## Berichtslogik
 
-The report should make it easy to tell a simple story:
+Der Bericht sollte eine einfache fachliche Geschichte erzählen:
 
-1. where money is going
-2. how much business demand each service supports
-3. where support burden is high
-4. which services look efficient or require action
+1. wohin die Kosten gehen
+2. wie viel geschäftliche Nachfrage jeder Service trägt
+3. wo die Supportbelastung hoch ist
+4. welche Services effizient wirken oder Handlungsbedarf haben

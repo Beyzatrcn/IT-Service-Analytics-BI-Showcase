@@ -7,11 +7,11 @@ INSERT INTO src_dynamics_service_catalog (
     business_criticality,
     capacity_users
 ) VALUES
-    ('VPN', 'VPN', 'Network Services Manager', 'Connectivity', 'Average Daily Connections', 'High', 1200),
-    ('CLOUD_STORAGE', 'Cloud Storage', 'Workplace Platform Manager', 'Collaboration', 'TB Stored', 'High', 800),
-    ('EMAIL', 'Email', 'Messaging Product Owner', 'Collaboration', 'Messages Processed', 'High', 1300),
-    ('IDENTITY_ACCESS', 'Identity & Access', 'IAM Service Lead', 'Security', 'Provisioning Events', 'Critical', 1300),
-    ('SERVICE_DESK', 'Service Desk', 'End User Support Lead', 'Support', 'Requests Handled', 'High', 1300);
+    ('VPN', 'VPN', 'Leitung Netzwerkservices', 'Connectivity', 'Durchschnittliche tägliche Verbindungen', 'High', 1200),
+    ('CLOUD_STORAGE', 'Cloud Storage', 'Leitung Workplace-Plattform', 'Collaboration', 'Gespeicherte TB', 'High', 800),
+    ('EMAIL', 'Email', 'Product Owner Messaging', 'Collaboration', 'Verarbeitete Nachrichten', 'High', 1300),
+    ('IDENTITY_ACCESS', 'Identity & Access', 'Leitung IAM-Service', 'Security', 'Provisioning-Ereignisse', 'Critical', 1300),
+    ('SERVICE_DESK', 'Service Desk', 'Leitung End User Support', 'Support', 'Bearbeitete Requests', 'High', 1300);
 
 INSERT INTO ref_sap_cost_center_mapping (
     cost_center,
@@ -22,8 +22,8 @@ INSERT INTO ref_sap_cost_center_mapping (
     ('CC_VPN', 'VPN', 'Software', 'DIRECT'),
     ('CC_STORAGE', 'CLOUD_STORAGE', 'Hosting', 'DIRECT'),
     ('CC_EMAIL', 'EMAIL', 'Software', 'DIRECT'),
-    ('CC_IAM', 'IDENTITY_ACCESS', 'Labor', 'DIRECT'),
-    ('CC_SVC_DESK', 'SERVICE_DESK', 'Labor', 'DIRECT'),
+    ('CC_IAM', 'IDENTITY_ACCESS', 'Personalkosten', 'DIRECT'),
+    ('CC_SVC_DESK', 'SERVICE_DESK', 'Personalkosten', 'DIRECT'),
     ('CC_SHARED', NULL, 'Shared Overhead', 'ACTIVE_USERS');
 
 INSERT INTO src_sap_cost_postings (
@@ -36,27 +36,27 @@ INSERT INTO src_sap_cost_postings (
     vendor_name,
     amount_usd
 ) VALUES
-    (1, DATE '2026-01-01', '1000', 'CC_VPN', '620200', 'VPN Subscription', 'SecureNet AG', 18500.00),
-    (2, DATE '2026-01-01', '1000', 'CC_STORAGE', '630100', 'Cloud Storage Hosting', 'Azure Cloud', 24000.00),
-    (3, DATE '2026-01-01', '1000', 'CC_EMAIL', '620210', 'Email Platform License', 'MailWorks Ltd', 21000.00),
-    (4, DATE '2026-01-01', '1000', 'CC_IAM', '610100', 'IAM Operations Labor', NULL, 16000.00),
-    (5, DATE '2026-01-01', '1000', 'CC_SVC_DESK', '610120', 'Service Desk Labor', NULL, 28000.00),
-    (6, DATE '2026-01-01', '1000', 'CC_SHARED', '630900', 'Monitoring Platform', 'ObserveIT', 3000.00),
-    (7, DATE '2026-01-01', '1000', 'CC_SHARED', '610900', 'Architecture Overhead', NULL, 4500.00),
-    (8, DATE '2026-02-01', '1000', 'CC_VPN', '620200', 'VPN Subscription', 'SecureNet AG', 18750.00),
-    (9, DATE '2026-02-01', '1000', 'CC_STORAGE', '630100', 'Cloud Storage Hosting', 'Azure Cloud', 25500.00),
-    (10, DATE '2026-02-01', '1000', 'CC_EMAIL', '620210', 'Email Platform License', 'MailWorks Ltd', 21250.00),
-    (11, DATE '2026-02-01', '1000', 'CC_IAM', '610100', 'IAM Operations Labor', NULL, 16400.00),
-    (12, DATE '2026-02-01', '1000', 'CC_SVC_DESK', '610120', 'Service Desk Labor', NULL, 28600.00),
-    (13, DATE '2026-02-01', '1000', 'CC_SHARED', '630900', 'Monitoring Platform', 'ObserveIT', 3200.00),
-    (14, DATE '2026-02-01', '1000', 'CC_SHARED', '610900', 'Architecture Overhead', NULL, 4700.00),
-    (15, DATE '2026-03-01', '1000', 'CC_VPN', '620200', 'VPN Subscription', 'SecureNet AG', 19000.00),
-    (16, DATE '2026-03-01', '1000', 'CC_STORAGE', '630100', 'Cloud Storage Hosting', 'Azure Cloud', 26800.00),
-    (17, DATE '2026-03-01', '1000', 'CC_EMAIL', '620210', 'Email Platform License', 'MailWorks Ltd', 21400.00),
-    (18, DATE '2026-03-01', '1000', 'CC_IAM', '610100', 'IAM Operations Labor', NULL, 16650.00),
-    (19, DATE '2026-03-01', '1000', 'CC_SVC_DESK', '610120', 'Service Desk Labor', NULL, 28950.00),
-    (20, DATE '2026-03-01', '1000', 'CC_SHARED', '630900', 'Monitoring Platform', 'ObserveIT', 3300.00),
-    (21, DATE '2026-03-01', '1000', 'CC_SHARED', '610900', 'Architecture Overhead', NULL, 4800.00);
+    (1, DATE '2026-01-01', '1000', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 18500.00),
+    (2, DATE '2026-01-01', '1000', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 24000.00),
+    (3, DATE '2026-01-01', '1000', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21000.00),
+    (4, DATE '2026-01-01', '1000', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16000.00),
+    (5, DATE '2026-01-01', '1000', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28000.00),
+    (6, DATE '2026-01-01', '1000', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3000.00),
+    (7, DATE '2026-01-01', '1000', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4500.00),
+    (8, DATE '2026-02-01', '1000', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 18750.00),
+    (9, DATE '2026-02-01', '1000', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 25500.00),
+    (10, DATE '2026-02-01', '1000', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21250.00),
+    (11, DATE '2026-02-01', '1000', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16400.00),
+    (12, DATE '2026-02-01', '1000', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28600.00),
+    (13, DATE '2026-02-01', '1000', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3200.00),
+    (14, DATE '2026-02-01', '1000', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4700.00),
+    (15, DATE '2026-03-01', '1000', 'CC_VPN', '620200', 'VPN-Abonnement', 'SecureNet AG', 19000.00),
+    (16, DATE '2026-03-01', '1000', 'CC_STORAGE', '630100', 'Cloud-Storage-Hosting', 'Azure Cloud', 26800.00),
+    (17, DATE '2026-03-01', '1000', 'CC_EMAIL', '620210', 'Lizenz Email-Plattform', 'MailWorks Ltd', 21400.00),
+    (18, DATE '2026-03-01', '1000', 'CC_IAM', '610100', 'Personalkosten IAM-Betrieb', NULL, 16650.00),
+    (19, DATE '2026-03-01', '1000', 'CC_SVC_DESK', '610120', 'Personalkosten Service Desk', NULL, 28950.00),
+    (20, DATE '2026-03-01', '1000', 'CC_SHARED', '630900', 'Monitoring-Plattform', 'ObserveIT', 3300.00),
+    (21, DATE '2026-03-01', '1000', 'CC_SHARED', '610900', 'Architektur-Gemeinkosten', NULL, 4800.00);
 
 INSERT INTO src_dynamics_service_requests_monthly (
     request_month,
@@ -89,21 +89,21 @@ INSERT INTO src_sql_service_usage_monthly (
     usage_unit,
     availability_pct
 ) VALUES
-    (DATE '2026-01-01', 'VPN', 820, 780.00, 'Average Daily Connections', 99.70),
-    (DATE '2026-01-01', 'CLOUD_STORAGE', 560, 122.00, 'TB Stored', 99.50),
-    (DATE '2026-01-01', 'EMAIL', 980, 1200000.00, 'Messages Processed', 99.90),
-    (DATE '2026-01-01', 'IDENTITY_ACCESS', 990, 4200.00, 'Provisioning Events', 99.80),
-    (DATE '2026-01-01', 'SERVICE_DESK', 1000, 3100.00, 'Requests Handled', 99.20),
-    (DATE '2026-02-01', 'VPN', 840, 805.00, 'Average Daily Connections', 99.80),
-    (DATE '2026-02-01', 'CLOUD_STORAGE', 575, 128.00, 'TB Stored', 99.50),
-    (DATE '2026-02-01', 'EMAIL', 985, 1240000.00, 'Messages Processed', 99.90),
-    (DATE '2026-02-01', 'IDENTITY_ACCESS', 995, 4380.00, 'Provisioning Events', 99.80),
-    (DATE '2026-02-01', 'SERVICE_DESK', 1000, 3250.00, 'Requests Handled', 99.30),
-    (DATE '2026-03-01', 'VPN', 860, 830.00, 'Average Daily Connections', 99.80),
-    (DATE '2026-03-01', 'CLOUD_STORAGE', 580, 134.00, 'TB Stored', 99.60),
-    (DATE '2026-03-01', 'EMAIL', 990, 1260000.00, 'Messages Processed', 99.90),
-    (DATE '2026-03-01', 'IDENTITY_ACCESS', 1000, 4550.00, 'Provisioning Events', 99.90),
-    (DATE '2026-03-01', 'SERVICE_DESK', 1000, 3350.00, 'Requests Handled', 99.30);
+    (DATE '2026-01-01', 'VPN', 820, 780.00, 'Durchschnittliche tägliche Verbindungen', 99.70),
+    (DATE '2026-01-01', 'CLOUD_STORAGE', 560, 122.00, 'Gespeicherte TB', 99.50),
+    (DATE '2026-01-01', 'EMAIL', 980, 1200000.00, 'Verarbeitete Nachrichten', 99.90),
+    (DATE '2026-01-01', 'IDENTITY_ACCESS', 990, 4200.00, 'Provisioning-Ereignisse', 99.80),
+    (DATE '2026-01-01', 'SERVICE_DESK', 1000, 3100.00, 'Bearbeitete Requests', 99.20),
+    (DATE '2026-02-01', 'VPN', 840, 805.00, 'Durchschnittliche tägliche Verbindungen', 99.80),
+    (DATE '2026-02-01', 'CLOUD_STORAGE', 575, 128.00, 'Gespeicherte TB', 99.50),
+    (DATE '2026-02-01', 'EMAIL', 985, 1240000.00, 'Verarbeitete Nachrichten', 99.90),
+    (DATE '2026-02-01', 'IDENTITY_ACCESS', 995, 4380.00, 'Provisioning-Ereignisse', 99.80),
+    (DATE '2026-02-01', 'SERVICE_DESK', 1000, 3250.00, 'Bearbeitete Requests', 99.30),
+    (DATE '2026-03-01', 'VPN', 860, 830.00, 'Durchschnittliche tägliche Verbindungen', 99.80),
+    (DATE '2026-03-01', 'CLOUD_STORAGE', 580, 134.00, 'Gespeicherte TB', 99.60),
+    (DATE '2026-03-01', 'EMAIL', 990, 1260000.00, 'Verarbeitete Nachrichten', 99.90),
+    (DATE '2026-03-01', 'IDENTITY_ACCESS', 1000, 4550.00, 'Provisioning-Ereignisse', 99.90),
+    (DATE '2026-03-01', 'SERVICE_DESK', 1000, 3350.00, 'Bearbeitete Requests', 99.30);
 
 INSERT INTO src_sql_support_ticket_monthly (
     ticket_month,

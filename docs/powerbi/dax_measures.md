@@ -1,60 +1,60 @@
-# DAX Measure Examples
+# DAX-Beispiele
 
-The examples below assume the main fact table in Power BI is named `'Service Monthly'` and is sourced from `vw_bi_service_monthly`.
+Die folgenden Beispiele gehen davon aus, dass die zentrale Faktentabelle in Power BI `'Service Monthly'` heißt und aus `vw_bi_service_monthly` geladen wird.
 
-## Core Financial Measures
+## Zentrale Finanzkennzahlen
 
 ```DAX
-Total Cost :=
+Gesamtkosten :=
 SUM ( 'Service Monthly'[total_cost_usd] )
 ```
 
 ```DAX
-Direct Cost :=
+Direkte Kosten :=
 SUM ( 'Service Monthly'[direct_cost_usd] )
 ```
 
 ```DAX
-Shared Cost :=
+Allokierte Gemeinkosten :=
 SUM ( 'Service Monthly'[shared_cost_usd] )
 ```
 
-## Usage And Support Measures
+## Nutzungs- und Supportkennzahlen
 
 ```DAX
-Total Active Users :=
+Aktive User Gesamt :=
 SUM ( 'Service Monthly'[active_users] )
 ```
 
 ```DAX
-Total Opened Tickets :=
+Eröffnete Tickets Gesamt :=
 SUM ( 'Service Monthly'[opened_tickets] )
 ```
 
 ```DAX
-Total Resolved Tickets :=
+Gelöste Tickets Gesamt :=
 SUM ( 'Service Monthly'[resolved_tickets] )
 ```
 
-## KPI Measures
+## KPI-Kennzahlen
 
 ```DAX
-Cost per User :=
-DIVIDE ( [Total Cost], [Total Active Users] )
+Kosten pro User :=
+DIVIDE ( [Gesamtkosten], [Aktive User Gesamt] )
 ```
 
 ```DAX
-Cost per Ticket :=
-DIVIDE ( [Total Cost], [Total Resolved Tickets] )
+Kosten pro Ticket :=
+DIVIDE ( [Gesamtkosten], [Gelöste Tickets Gesamt] )
 ```
 
 ```DAX
-Tickets per 100 Users :=
-DIVIDE ( [Total Opened Tickets], [Total Active Users] ) * 100
+Tickets pro 100 User :=
+DIVIDE ( [Eröffnete Tickets Gesamt], [Aktive User Gesamt] ) * 100
 ```
 
 ```DAX
-Automation Rate % :=
+Automatisierungsquote % :=
 DIVIDE (
     SUM ( 'Service Monthly'[automated_requests] ),
     SUM ( 'Service Monthly'[total_requests] )
@@ -62,59 +62,59 @@ DIVIDE (
 ```
 
 ```DAX
-Average SLA % :=
+SLA-Quote Durchschnitt :=
 AVERAGE ( 'Service Monthly'[sla_met_pct] )
 ```
 
 ```DAX
-Average Service Efficiency Index :=
+Effizienzindex Durchschnitt :=
 AVERAGE ( 'Service Monthly'[service_efficiency_index] )
 ```
 
-## Trend Measures
+## Trendkennzahlen
 
 ```DAX
-Previous Month Cost :=
+Kosten Vormonat :=
 CALCULATE (
-    [Total Cost],
+    [Gesamtkosten],
     DATEADD ( 'Calendar'[Date], -1, MONTH )
 )
 ```
 
 ```DAX
-Cost Variance vs Previous Month :=
-[Total Cost] - [Previous Month Cost]
+Kostenabweichung zum Vormonat :=
+[Gesamtkosten] - [Kosten Vormonat]
 ```
 
 ```DAX
-Cost Variance % vs Previous Month :=
-DIVIDE ( [Cost Variance vs Previous Month], [Previous Month Cost] )
+Kostenabweichung % zum Vormonat :=
+DIVIDE ( [Kostenabweichung zum Vormonat], [Kosten Vormonat] )
 ```
 
-## Portfolio Ranking Measures
+## Portfolio-Ranking-Kennzahlen
 
 ```DAX
-Service Cost Rank :=
+Kostenrang Service :=
 RANKX (
     ALL ( 'Service Monthly'[service_name] ),
-    [Total Cost],
+    [Gesamtkosten],
     ,
     DESC
 )
 ```
 
 ```DAX
-Highest Cost Service :=
+Service mit höchsten Kosten :=
 TOPN (
     1,
     VALUES ( 'Service Monthly'[service_name] ),
-    [Total Cost],
+    [Gesamtkosten],
     DESC
 )
 ```
 
-## Interpretation Guidance
+## Hinweise zur Interpretation
 
-- `Cost per User` supports finance comparison across services with broad employee reach.
-- `Cost per Ticket` should be read together with ticket complexity and service criticality.
-- `Average Service Efficiency Index` is best used as a directional management signal, not a replacement for operational root-cause analysis.
+- `Kosten pro User` unterstützt den Finance-Vergleich über Services mit breiter Mitarbeiterreichweite.
+- `Kosten pro Ticket` sollte immer zusammen mit Ticketkomplexität und Service-Kritikalität betrachtet werden.
+- `Effizienzindex Durchschnitt` eignet sich vor allem als richtungsweisender Management-Indikator und nicht als Ersatz für operative Ursachenanalyse.

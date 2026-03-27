@@ -1,23 +1,23 @@
-# SAP Cost Mapping Logic
+# SAP-Kostenzuordnungslogik
 
-## Purpose
+## Zweck
 
-SAP postings do not always arrive in a reporting-ready service structure. This document explains how cost is translated from SAP accounting objects into service-level BI reporting.
+SAP-Buchungen liegen nicht immer in einer unmittelbar reportingfähigen Service-Struktur vor. Dieses Dokument erklärt, wie Kosten aus SAP-Kontierungsobjekten in servicebezogenes BI-Reporting überführt werden.
 
-## Mapping Strategy
+## Mapping-Strategie
 
-The sample logic uses two layers:
+Die Beispiel-Logik verwendet zwei Ebenen:
 
-1. Direct mapping from service-specific cost centers to a service code
-2. Shared cost allocation for common IT overhead that cannot be directly assigned
+1. Direkte Zuordnung von service-spezifischen Cost Centern zu einem Service-Code
+2. Shared-Cost-Allokation für gemeinsame IT-Gemeinkosten, die nicht direkt zugeordnet werden können
 
-## Cost Mapping Precedence
+## Reihenfolge der Kostenlogik
 
-### 1. Direct Service Cost
+### 1. Direkte Servicekosten
 
-If a posting belongs to a dedicated service cost center, it is assigned directly to that service.
+Wenn eine Buchung zu einem dedizierten Service-Cost-Center gehört, wird sie direkt diesem Service zugeordnet.
 
-Examples:
+Beispiele:
 
 - `CC_VPN` -> `VPN`
 - `CC_STORAGE` -> `CLOUD_STORAGE`
@@ -25,69 +25,69 @@ Examples:
 - `CC_IAM` -> `IDENTITY_ACCESS`
 - `CC_SVC_DESK` -> `SERVICE_DESK`
 
-### 2. Shared IT Overhead
+### 2. Gemeinsame IT-Gemeinkosten
 
-If a posting belongs to `CC_SHARED`, it is treated as shared cost and allocated across services using the active-user share in the same month.
+Wenn eine Buchung zu `CC_SHARED` gehört, wird sie als Shared Cost behandelt und im selben Monat anhand des Anteils aktiver User auf die Services verteilt.
 
-This is appropriate for example costs such as:
+Das ist für Kostenarten geeignet wie zum Beispiel:
 
-- enterprise monitoring
-- architecture overhead
-- common platform administration
+- zentrales Monitoring
+- Architektur-Gemeinkosten
+- gemeinsame Plattformadministration
 
 ## Cost Buckets
 
-The sample mapping also classifies cost into business-friendly buckets:
+Die Beispiel-Logik klassifiziert Kosten zusätzlich in fachlich verständliche Buckets:
 
 - Labor
 - Software
 - Hosting
 - Shared Overhead
 
-These buckets support management discussion without exposing overly technical SAP structures.
+Diese Buckets unterstützen Management-Diskussionen, ohne zu tief in technische SAP-Strukturen einzusteigen.
 
-## Allocation Driver
+## Allokationstreiber
 
-The chosen allocation driver is:
+Der gewählte Treiber lautet:
 
 `monthly active users per service / total monthly active users across all services`
 
-This driver is simple, explainable, and easy for management to challenge or approve.
+Dieser Treiber ist einfach, nachvollziehbar und für das Management gut überprüfbar.
 
-## Why Active Users?
+## Warum aktive User?
 
-Active users are a reasonable proxy because:
+Aktive User sind ein sinnvoller Näherungswert, weil:
 
-- the in-scope services are employee-facing
-- management understands user-base logic intuitively
-- it avoids arbitrary equal-split allocation
+- die betrachteten Services mitarbeiternah sind
+- das Management nutzerbezogene Logik intuitiv versteht
+- eine willkürliche Gleichverteilung vermieden wird
 
-In a production solution, some services might require more specific drivers such as:
+In einer produktiven Lösung könnten je nach Service auch spezifischere Treiber sinnvoll sein, zum Beispiel:
 
-- storage volume
-- ticket volume
-- identity transactions
-- server or workload consumption
+- Storage-Volumen
+- Ticketvolumen
+- Identity-Transaktionen
+- Server- oder Workload-Verbrauch
 
-## Example Allocation Logic
+## Beispiel für die Allokationslogik
 
-If shared cost in March is USD 8,100 and VPN has 860 active users out of a total 4,430, the VPN service receives:
+Wenn die Shared Costs im März USD 8.100 betragen und VPN 860 aktive User von insgesamt 4.430 hat, entfällt auf VPN:
 
 `8,100 * (860 / 4,430) = 1,572.23 USD`
 
-## Control Expectations
+## Erwartete Kontrollen
 
-- every SAP posting must map to either a direct service or shared allocation
-- mapping tables must be version controlled
-- changes to allocation logic must be documented before the next reporting cycle
-- direct cost and shared cost should remain separately visible in reports
+- jede SAP-Buchung muss entweder einer direkten Zuordnung oder einer Shared-Cost-Logik zugeordnet sein
+- Mapping-Tabellen müssen versioniert werden
+- Änderungen an der Allokationslogik müssen vor dem nächsten Reporting-Zyklus dokumentiert werden
+- Direct Cost und Shared Cost sollten im Reporting getrennt sichtbar bleiben
 
-## Reporting Implication
+## Bedeutung für das Reporting
 
-The final management dashboard should always allow users to distinguish:
+Das finale Management-Dashboard sollte immer die Unterscheidung ermöglichen zwischen:
 
-- direct service spend
-- shared allocated spend
-- total service cost
+- direktem Serviceaufwand
+- allokierten Shared Costs
+- gesamten Servicekosten
 
-This improves trust and prevents unnecessary debate about whether a cost is operationally owned or allocated for transparency.
+Das stärkt das Vertrauen in die Zahlen und reduziert unnötige Diskussionen darüber, ob ein Kostenblock operativ verantwortet oder nur zur Transparenz allokiert wurde.

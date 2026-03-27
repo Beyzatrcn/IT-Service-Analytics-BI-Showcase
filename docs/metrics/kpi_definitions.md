@@ -1,75 +1,75 @@
-# KPI Definitions
+# KPI-Definitionen
 
-## KPI Design Principles
+## KPI-Designprinzipien
 
-The KPIs in this showcase are intentionally simple, transparent, and management-friendly. They are designed to support discussion and prioritization rather than replace detailed operational reporting.
+Die KPIs in diesem Showcase sind bewusst einfach, transparent und managementtauglich gehalten. Sie sollen Diskussionen und Priorisierung unterstützen und nicht detailliertes operatives Reporting ersetzen.
 
-## Core KPIs
+## Kern-KPIs
 
-| KPI | Business Definition | Formula | Interpretation |
+| KPI | Fachliche Definition | Formel | Interpretation |
 |---|---|---|---|
-| Cost per Service | Total monthly cost attributed to a service | `Direct Cost + Allocated Shared Cost` | Shows total financial footprint of a service |
-| Usage per Service | Monthly business consumption of a service | `Usage Volume` | Shows service demand in the unit that best fits the service |
-| Cost per User | Total service cost divided by active users | `Total Cost / Active Users` | Shows affordability of a service relative to the user base |
-| Tickets per Service | Monthly support workload by service | `Opened Tickets` | Shows operational support burden |
-| Cost per Ticket | Total service cost divided by resolved tickets | `Total Cost / Resolved Tickets` | Shows how much cost sits behind each resolved support case |
-| Tickets per 100 Users | Ticket intensity normalized by user base | `(Opened Tickets / Active Users) * 100` | Allows comparison between services of different size |
-| Automation Rate | Share of service requests handled automatically | `Automated Requests / Total Requests` | Indicates process maturity and operational leverage |
-| Service Efficiency Index | Lightweight blended indicator of value versus cost and support burden | `((Active Users / Total Cost) * 1000) / (1 + Tickets per 100 Users)` | Higher values indicate better reach at lower cost and lower support pressure |
+| Kosten pro Service | Gesamtkosten eines Services pro Monat | `Direct Cost + Allocated Shared Cost` | Zeigt den gesamten finanziellen Footprint eines Services |
+| Nutzung pro Service | Geschäftliche Nutzung eines Services pro Monat | `Usage Volume` | Zeigt die Nachfrage in der für den Service passenden Einheit |
+| Kosten pro User | Gesamtkosten eines Services geteilt durch aktive User | `Total Cost / Active Users` | Zeigt die Wirtschaftlichkeit im Verhältnis zur Nutzerbasis |
+| Tickets pro Service | Monatliche Supportbelastung je Service | `Opened Tickets` | Zeigt den operativen Supportaufwand |
+| Kosten pro Ticket | Gesamtkosten eines Services geteilt durch gelöste Tickets | `Total Cost / Resolved Tickets` | Zeigt, wie viel Kosten hinter jedem gelösten Supportfall stehen |
+| Tickets pro 100 User | Auf die Nutzerbasis normierte Ticketintensität | `(Opened Tickets / Active Users) * 100` | Erlaubt den Vergleich unterschiedlich großer Services |
+| Automatisierungsquote | Anteil automatisiert bearbeiteter Service Requests | `Automated Requests / Total Requests` | Zeigt Prozessreife und operativen Hebel |
+| Service Efficiency Index | Verdichteter Indikator für Nutzen im Verhältnis zu Kosten und Supportbelastung | `((Active Users / Total Cost) * 1000) / (1 + Tickets per 100 Users)` | Höhere Werte stehen für größere Reichweite bei geringeren Kosten und geringerer Supportlast |
 
-## KPI Notes
+## Hinweise zu den KPIs
 
-### Cost Per Service
+### Kosten pro Service
 
-This KPI includes both direct service cost and an allocated share of common IT overhead. It is intended for management transparency, not statutory accounting.
+Dieser KPI umfasst sowohl direkte Servicekosten als auch einen allokierten Anteil gemeinsamer IT-Gemeinkosten. Er dient der Management-Transparenz und nicht der gesetzlichen Rechnungslegung.
 
-### Usage Per Service
+### Nutzung pro Service
 
-Usage is intentionally service-specific:
+Die Nutzung ist bewusst service-spezifisch definiert:
 
-- VPN: average monthly active users
-- Cloud Storage: terabytes stored
-- Email: messages processed
-- Identity & Access: provisioning events
-- Service Desk: requests handled
+- VPN: durchschnittliche monatlich aktive User
+- Cloud Storage: gespeicherte Terabytes
+- Email: verarbeitete Nachrichten
+- Identity & Access: Provisioning-Ereignisse
+- Service Desk: bearbeitete Requests
 
-### Cost Per User
+### Kosten pro User
 
-This KPI is especially relevant for workplace services and allows a finance audience to compare efficiency across services with broad employee reach.
+Dieser KPI ist besonders relevant für Workplace-nahe Services und erlaubt einer Finance-Zielgruppe den Effizienzvergleich über Services mit breiter Mitarbeiterreichweite.
 
-### Cost Per Ticket
+### Kosten pro Ticket
 
-This metric is helpful for support-heavy services, but it should always be interpreted alongside:
+Diese Kennzahl ist vor allem für supportintensive Services hilfreich, sollte aber immer zusammen gelesen werden mit:
 
-- service criticality
-- service complexity
-- automation potential
+- Kritikalität des Services
+- Komplexität des Services
+- Automatisierungspotenzial
 
 ### Service Efficiency Index
 
-The efficiency index is a portfolio KPI rather than a finance accounting measure. It is useful because it combines:
+Der Efficiency Index ist ein Portfolio-KPI und keine finanzbuchhalterische Kennzahl. Er ist nützlich, weil er Folgendes zusammenführt:
 
-- business reach
-- cost
-- support intensity
+- geschäftliche Reichweite
+- Kosten
+- Supportintensität
 
-It should be used for directional comparison, not as a stand-alone decision rule.
+Er sollte für richtungsweisende Vergleiche genutzt werden, nicht als alleinige Entscheidungsregel.
 
-## Suggested Threshold Logic
+## Vorgeschlagene Schwellenlogik
 
-| KPI | Green | Amber | Red |
+| KPI | Grün | Gelb | Rot |
 |---|---|---|---|
-| Cost per User | Stable or decreasing | Up to 5% above baseline | More than 5% above baseline |
-| Tickets per 100 Users | Below target | Slightly above target | Materially above target |
-| Automation Rate | Improving trend | Flat trend | Declining trend |
-| Service Efficiency Index | Above portfolio average | Near portfolio average | Below portfolio average |
+| Kosten pro User | Stabil oder rückläufig | Bis zu 5 % über dem Ausgangswert | Mehr als 5 % über dem Ausgangswert |
+| Tickets pro 100 User | Unter Zielwert | Leicht über Zielwert | Deutlich über Zielwert |
+| Automatisierungsquote | Verbessernder Trend | Seitwärtsbewegung | Rückläufiger Trend |
+| Service Efficiency Index | Über Portfoliodurchschnitt | Nahe am Portfoliodurchschnitt | Unter Portfoliodurchschnitt |
 
-## Ownership
+## Verantwortlichkeiten
 
-| KPI | Primary Owner | Secondary Owner |
+| KPI | Primärer Owner | Sekundärer Owner |
 |---|---|---|
-| Cost per Service | Finance BI | Service Owner |
-| Cost per User | Finance BI | IT Leadership |
-| Tickets per Service | Service Operations | Service Owner |
-| Cost per Ticket | Finance BI | Service Operations |
+| Kosten pro Service | Finance BI | Service Owner |
+| Kosten pro User | Finance BI | IT-Leitung |
+| Tickets pro Service | Service Operations | Service Owner |
+| Kosten pro Ticket | Finance BI | Service Operations |
 | Service Efficiency Index | BI / Management Reporting | CIO Office |

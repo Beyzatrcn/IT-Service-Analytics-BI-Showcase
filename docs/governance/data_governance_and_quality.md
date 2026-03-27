@@ -1,75 +1,75 @@
-# Data Governance And Quality
+# Data Governance und Datenqualität
 
-## Governance Objective
+## Governance-Ziel
 
-The purpose of governance in this showcase is to make the reporting model:
+Governance soll in diesem Showcase sicherstellen, dass das Reporting-Modell:
 
-- trusted by finance and management
-- understandable for business stakeholders
-- sustainable for repeated monthly refreshes
+- von Finance und Management als vertrauenswürdig wahrgenommen wird
+- für fachliche Stakeholder verständlich bleibt
+- für wiederkehrende monatliche Refreshes tragfähig ist
 
-## Role Model
+## Rollenmodell
 
-| Role | Responsibility |
+| Rolle | Verantwortung |
 |---|---|
-| Finance BI Analyst | Owns KPI definitions, reporting logic, and business validation |
-| SAP Data Owner | Ensures financial postings and cost center assignments are complete |
-| Dynamics Service Manager | Maintains the service catalog and request process metadata |
-| IT Operations Analyst | Validates usage and support extracts from local SQL databases |
-| Service Owner | Reviews service-level KPI interpretation and improvement actions |
+| Finance BI Analyst | Verantwortet KPI-Definitionen, Reporting-Logik und fachliche Validierung |
+| SAP Data Owner | Stellt vollständige Finanzbuchungen und korrekte Cost-Center-Zuordnungen sicher |
+| Dynamics Service Manager | Pflegt den Servicekatalog und die Prozessmetadaten |
+| IT Operations Analyst | Validiert Nutzungs- und Support-Extrakte aus lokalen SQL-Datenbanken |
+| Service Owner | Bewertet servicebezogene KPI-Interpretationen und Verbesserungsmaßnahmen |
 
-## Core Governance Rules
+## Zentrale Governance-Regeln
 
-### Master Data Governance
+### Master-Data-Governance
 
-- `service_code` is the mandatory cross-system business key
-- service names must remain business-friendly and stable over time
-- each service must have one accountable owner in the service catalog
+- `service_code` ist der verbindliche fachliche Schlüssel über alle Systeme hinweg
+- Service-Namen müssen fachlich verständlich und über die Zeit stabil bleiben
+- jeder Service muss genau einen verantwortlichen Owner im Servicekatalog haben
 
 ### Financial Governance
 
-- SAP remains the system of record for cost
-- shared cost allocation is documented separately from direct cost
-- allocation logic must be consistent month over month unless formally changed
+- SAP bleibt das führende System für Kosten
+- Shared-Cost-Allokation wird getrennt von direkten Kosten dokumentiert
+- die Allokationslogik muss über die Monate konsistent bleiben, sofern keine formale Änderung beschlossen wird
 
-### KPI Governance
+### KPI-Governance
 
-- KPI definitions must be version controlled
-- any KPI formula change must be communicated before reporting release
-- Power BI labels must exactly match documented KPI names
+- KPI-Definitionen müssen versioniert werden
+- jede Änderung an einer KPI-Formel muss vor der Reporting-Veröffentlichung kommuniziert werden
+- Power-BI-Bezeichnungen müssen exakt zu den dokumentierten KPI-Namen passen
 
-## Data Quality Checks
+## Datenqualitätsprüfungen
 
-| Check | Rule | Action On Failure |
+| Prüfung | Regel | Maßnahme bei Fehler |
 |---|---|---|
-| Missing service code | No source record may enter the mart without a valid service code | Reject row and log for remediation |
-| Duplicate monthly service row | One row per service per month per source summary | Investigate source extract |
-| Negative active users | Active users must be zero or positive | Block load |
-| Resolved tickets > opened tickets by large margin | Validate summary extract consistency | Review with operations owner |
-| Automated requests > total requests | Not allowed | Block load |
-| Unmapped SAP cost center | Every posting must map to direct or shared logic | Hold posting in exception queue |
-| SLA count > resolved tickets | Not allowed | Block load |
+| Fehlender Service-Code | Kein Quellrecord darf ohne gültigen Service-Code in den Mart gelangen | Zeile ablehnen und für Korrektur protokollieren |
+| Doppelte Service-Monats-Zeile | Pro Quelle darf es nur eine Zeile je Service und Monat geben | Quell-Extrakt untersuchen |
+| Negative aktive User | Aktive User müssen null oder positiv sein | Load stoppen |
+| Gelöste Tickets deutlich höher als eröffnete Tickets | Konsistenz des Summenextrakts prüfen | Mit Operations Owner klären |
+| Automatisierte Requests > Gesamt-Requests | Nicht zulässig | Load stoppen |
+| Nicht gemapptes SAP Cost Center | Jede Buchung muss einer direkten oder gemeinsamen Logik zugeordnet sein | In Exception Queue zurückhalten |
+| SLA-Tickets > gelöste Tickets | Nicht zulässig | Load stoppen |
 
-## Refresh Cadence
+## Refresh-Rhythmus
 
-- Recommended refresh frequency: monthly
-- Suggested timeline:
-  - Day 1 to 3: SAP close data available
-  - Day 2 to 4: Dynamics and local SQL extracts refreshed
-  - Day 4 to 5: BI transformation and validation
-  - Day 5: management dashboard publication
+- Empfohlene Refresh-Frequenz: monatlich
+- Empfohlener Ablauf:
+  - Tag 1 bis 3: SAP-Abschlussdaten liegen vor
+  - Tag 2 bis 4: Dynamics- und lokale SQL-Extrakte werden aktualisiert
+  - Tag 4 bis 5: BI-Transformation und Validierung
+  - Tag 5: Veröffentlichung des Management-Dashboards
 
-## Known Design Limitations
+## Bekannte Designgrenzen
 
-- Shared cost is allocated using a single driver for clarity
-- Usage is summarized monthly, not daily
-- The sample does not include departmental chargeback or budgeting logic
-- The model is designed for management transparency, not financial accounting close
+- Shared Cost wird aus Gründen der Verständlichkeit über einen einzelnen Treiber allokiert
+- Nutzung ist monatlich zusammengefasst und nicht täglich verfügbar
+- Das Beispiel enthält keine Chargeback- oder Budgetlogik auf Fachbereichsebene
+- Das Modell dient Management-Transparenz und nicht dem buchhalterischen Abschluss
 
-## Recommended Future Enhancements
+## Empfohlene Weiterentwicklungen
 
-- Introduce cost center exception handling workflow
-- Track budget versus actual cost in the mart
-- Add service-level target thresholds for red/amber/green evaluation
-- Store historical KPI definition versions
-- Introduce a Power BI semantic model with certified measures
+- Workflow für Cost-Center-Ausnahmen einführen
+- Budget-versus-Actual-Logik im Mart ergänzen
+- Zielwerte für Rot-Gelb-Grün je Service definieren
+- Historisierung von KPI-Definitionen aufbauen
+- Ein semantisches Power-BI-Modell mit zertifizierten Measures bereitstellen

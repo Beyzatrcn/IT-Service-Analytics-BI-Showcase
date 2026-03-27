@@ -1,101 +1,101 @@
-# Data Dictionary
+# Datenkatalog
 
-This data dictionary covers the primary source entities and the final reporting mart used by Power BI.
+Dieser Datenkatalog beschreibt die wichtigsten Quellentitäten sowie den finalen Reporting Mart für Power BI.
 
-## Source Table: `src_sap_cost_postings`
+## Quelltabelle: `src_sap_cost_postings`
 
-| Field | Type | Description |
+| Feld | Typ | Beschreibung |
 |---|---|---|
-| posting_id | integer | Unique posting identifier |
-| posting_month | date | Reporting month of the posting |
-| company_code | varchar(10) | SAP company code |
-| cost_center | varchar(50) | Cost center that owns the posting |
-| gl_account | varchar(20) | G/L account used for financial classification |
-| cost_element_name | varchar(100) | Readable description of the posting |
-| vendor_name | varchar(100) | Optional external vendor |
-| amount_usd | numeric(12,2) | Posting amount in USD |
+| posting_id | integer | Eindeutige ID der Buchung |
+| posting_month | date | Reporting-Monat der Buchung |
+| company_code | varchar(10) | SAP-Buchungskreis |
+| cost_center | varchar(50) | Cost Center, dem die Buchung zugeordnet ist |
+| gl_account | varchar(20) | Sachkonto zur finanziellen Klassifikation |
+| cost_element_name | varchar(100) | Lesbare Beschreibung der Buchung |
+| vendor_name | varchar(100) | Optionaler externer Lieferant |
+| amount_usd | numeric(12,2) | Buchungsbetrag in USD |
 
-## Source Table: `src_dynamics_service_catalog`
+## Quelltabelle: `src_dynamics_service_catalog`
 
-| Field | Type | Description |
+| Feld | Typ | Beschreibung |
 |---|---|---|
-| service_code | varchar(20) | Standard service identifier used across the model |
-| service_name | varchar(100) | Business-facing service name |
-| service_owner | varchar(100) | Accountable service owner |
-| service_category | varchar(50) | Category such as Collaboration or Security |
-| unit_of_measure | varchar(50) | Reporting usage unit for the service |
-| business_criticality | varchar(20) | Criticality rating used for context |
-| capacity_users | integer | Approximate service design capacity |
+| service_code | varchar(20) | Standardisierter Service-Identifier im gesamten Modell |
+| service_name | varchar(100) | Fachlicher Service-Name |
+| service_owner | varchar(100) | Verantwortlicher Service Owner |
+| service_category | varchar(50) | Kategorie, zum Beispiel Collaboration oder Security |
+| unit_of_measure | varchar(50) | Reporting-Einheit für die Nutzung |
+| business_criticality | varchar(20) | Kritikalität zur fachlichen Einordnung |
+| capacity_users | integer | Näherungswert für die Service-Kapazität in Usern |
 
-## Source Table: `src_dynamics_service_requests_monthly`
+## Quelltabelle: `src_dynamics_service_requests_monthly`
 
-| Field | Type | Description |
+| Feld | Typ | Beschreibung |
 |---|---|---|
-| request_month | date | Reporting month |
-| service_code | varchar(20) | Service identifier |
-| total_requests | integer | Total requests recorded in Dynamics |
-| automated_requests | integer | Requests fulfilled automatically |
-| avg_fulfillment_hours | numeric(10,2) | Average time to fulfill a request |
+| request_month | date | Reporting-Monat |
+| service_code | varchar(20) | Service-Identifier |
+| total_requests | integer | Gesamtzahl der in Dynamics erfassten Requests |
+| automated_requests | integer | Automatisch erfüllte Requests |
+| avg_fulfillment_hours | numeric(10,2) | Durchschnittliche Erfüllungszeit in Stunden |
 
-## Source Table: `src_sql_service_usage_monthly`
+## Quelltabelle: `src_sql_service_usage_monthly`
 
-| Field | Type | Description |
+| Feld | Typ | Beschreibung |
 |---|---|---|
-| usage_month | date | Reporting month |
-| service_code | varchar(20) | Service identifier |
-| active_users | integer | Number of active users for the month |
-| usage_volume | numeric(18,2) | Service-specific usage volume |
-| usage_unit | varchar(50) | Unit for the usage volume |
-| availability_pct | numeric(5,2) | Monthly availability percentage |
+| usage_month | date | Reporting-Monat |
+| service_code | varchar(20) | Service-Identifier |
+| active_users | integer | Anzahl aktiver User im Monat |
+| usage_volume | numeric(18,2) | Service-spezifisches Nutzungsvolumen |
+| usage_unit | varchar(50) | Einheit des Nutzungsvolumens |
+| availability_pct | numeric(5,2) | Monatliche Verfügbarkeit in Prozent |
 
-## Source Table: `src_sql_support_ticket_monthly`
+## Quelltabelle: `src_sql_support_ticket_monthly`
 
-| Field | Type | Description |
+| Feld | Typ | Beschreibung |
 |---|---|---|
-| ticket_month | date | Reporting month |
-| service_code | varchar(20) | Service identifier |
-| opened_tickets | integer | Tickets opened in the month |
-| resolved_tickets | integer | Tickets resolved in the month |
-| sla_met_tickets | integer | Resolved tickets achieved within SLA |
-| major_incidents | integer | Count of major incidents in the month |
-| backlog_tickets | integer | Open ticket backlog at month end |
+| ticket_month | date | Reporting-Monat |
+| service_code | varchar(20) | Service-Identifier |
+| opened_tickets | integer | Im Monat eröffnete Tickets |
+| resolved_tickets | integer | Im Monat gelöste Tickets |
+| sla_met_tickets | integer | Innerhalb SLA gelöste Tickets |
+| major_incidents | integer | Anzahl schwerwiegender Incidents im Monat |
+| backlog_tickets | integer | Offener Ticketbestand zum Monatsende |
 
-## Reference Table: `ref_sap_cost_center_mapping`
+## Referenztabelle: `ref_sap_cost_center_mapping`
 
-| Field | Type | Description |
+| Feld | Typ | Beschreibung |
 |---|---|---|
-| cost_center | varchar(50) | Cost center from SAP |
-| service_code | varchar(20) | Target service code; null for shared cost |
-| cost_bucket | varchar(50) | Cost classification such as Labor or Hosting |
-| allocation_method | varchar(30) | `DIRECT` or `ACTIVE_USERS` |
+| cost_center | varchar(50) | Cost Center aus SAP |
+| service_code | varchar(20) | Ziel-Service-Code; null bei Shared Cost |
+| cost_bucket | varchar(50) | Kostenklassifikation, zum Beispiel Labor oder Hosting |
+| allocation_method | varchar(30) | `DIRECT` oder `ACTIVE_USERS` |
 
 ## Reporting View: `vw_bi_service_monthly`
 
-| Field | Type | Description |
+| Feld | Typ | Beschreibung |
 |---|---|---|
-| report_month | date | Month shown in Power BI |
-| service_code | varchar(20) | Standard service identifier |
-| service_name | varchar(100) | Business service name |
-| service_owner | varchar(100) | Accountable owner |
-| service_category | varchar(50) | Service grouping |
-| total_cost_usd | numeric(14,2) | Total monthly cost including shared allocation |
-| direct_cost_usd | numeric(14,2) | Directly assigned cost only |
-| shared_cost_usd | numeric(14,2) | Allocated shared cost |
-| active_users | integer | Monthly active users |
-| usage_volume | numeric(18,2) | Service-specific usage metric |
-| usage_unit | varchar(50) | Unit of measure for usage |
-| opened_tickets | integer | Tickets opened in the month |
-| resolved_tickets | integer | Tickets resolved in the month |
-| sla_met_pct | numeric(6,2) | SLA achievement percentage |
-| total_requests | integer | Request volume from Dynamics |
-| automated_requests | integer | Automated request count |
-| automation_rate_pct | numeric(6,2) | Share of automated requests |
-| availability_pct | numeric(6,2) | Service availability percentage |
-| cost_per_user | numeric(14,2) | Total cost divided by active users |
-| cost_per_ticket | numeric(14,2) | Total cost divided by resolved tickets |
-| tickets_per_100_users | numeric(14,2) | Ticket intensity relative to user base |
-| service_efficiency_index | numeric(14,2) | Portfolio efficiency indicator |
+| report_month | date | In Power BI angezeigter Monat |
+| service_code | varchar(20) | Standardisierter Service-Identifier |
+| service_name | varchar(100) | Fachlicher Service-Name |
+| service_owner | varchar(100) | Verantwortlicher Owner |
+| service_category | varchar(50) | Service-Gruppe |
+| total_cost_usd | numeric(14,2) | Gesamtkosten des Monats inklusive Shared-Cost-Allokation |
+| direct_cost_usd | numeric(14,2) | Nur direkt zugeordnete Kosten |
+| shared_cost_usd | numeric(14,2) | Allokierte Shared Costs |
+| active_users | integer | Aktive User im Monat |
+| usage_volume | numeric(18,2) | Service-spezifische Nutzungskennzahl |
+| usage_unit | varchar(50) | Maßeinheit der Nutzung |
+| opened_tickets | integer | Im Monat eröffnete Tickets |
+| resolved_tickets | integer | Im Monat gelöste Tickets |
+| sla_met_pct | numeric(6,2) | SLA-Erfüllungsquote in Prozent |
+| total_requests | integer | Request-Volumen aus Dynamics |
+| automated_requests | integer | Anzahl automatisierter Requests |
+| automation_rate_pct | numeric(6,2) | Anteil automatisierter Requests |
+| availability_pct | numeric(6,2) | Service-Verfügbarkeit in Prozent |
+| cost_per_user | numeric(14,2) | Gesamtkosten geteilt durch aktive User |
+| cost_per_ticket | numeric(14,2) | Gesamtkosten geteilt durch gelöste Tickets |
+| tickets_per_100_users | numeric(14,2) | Ticketintensität relativ zur Nutzerbasis |
+| service_efficiency_index | numeric(14,2) | Portfolio-Kennzahl zur Service-Effizienz |
 
-## Business Key Standard
+## Standard des fachlichen Schlüssels
 
-The central business key is `service_code`. Every source is aligned to this identifier before reporting outputs are created.
+Der zentrale fachliche Schlüssel ist `service_code`. Alle Quellen werden vor der Reporting-Erstellung auf diesen Identifier ausgerichtet.

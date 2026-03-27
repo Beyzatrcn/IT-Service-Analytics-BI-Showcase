@@ -1,36 +1,36 @@
-# Case Overview
+# Fallübersicht
 
-## Scenario
+## Szenario
 
-A fictional mid-sized enterprise operates a shared internal IT organization that delivers core workplace and support services across the business. Finance and management want better visibility into how IT service spending translates into business usage and operational effort.
+Ein fiktives mittelständisches Unternehmen betreibt eine zentrale interne IT-Organisation, die grundlegende Workplace- und Support-Services für das gesamte Unternehmen bereitstellt. Finance und Management möchten besser verstehen, wie sich IT-Servicekosten in geschäftliche Nutzung und operativen Aufwand übersetzen.
 
-The current reporting landscape is fragmented:
+Die aktuelle Reporting-Landschaft ist fragmentiert:
 
-- SAP contains the financial truth for IT spend
-- Microsoft Dynamics contains service catalog and request management context
-- Local SQL databases contain service usage and support activity
+- SAP enthält die finanzielle Sicht auf IT-Kosten
+- Microsoft Dynamics enthält Servicekatalog- und Request-Management-Kontext
+- lokale SQL-Datenbanken enthalten Nutzungs- und Supportaktivitäten
 
-As a result, managers can see isolated metrics, but they cannot easily answer integrated questions such as:
+Dadurch sind zwar einzelne Kennzahlen sichtbar, integrierte Fragestellungen lassen sich jedoch nur schwer beantworten, zum Beispiel:
 
-- Which services are most expensive relative to their user base?
-- Which services create a disproportionate support burden?
-- Where is cost rising faster than business demand?
-- Which services are efficient enough to scale further?
+- Welche Services sind im Verhältnis zu ihrer Nutzerbasis am teuersten?
+- Welche Services erzeugen eine überproportionale Supportbelastung?
+- Wo steigen die Kosten schneller als die geschäftliche Nachfrage?
+- Welche Services wirken ausreichend effizient, um weiter skaliert zu werden?
 
-## BI Objective
+## BI-Zielbild
 
-Build a simple, management-ready reporting model that combines cost, usage, and operational workload for key IT services.
+Aufbau eines einfachen, managementtauglichen Reporting-Modells, das Kosten, Nutzung und operativen Aufwand für zentrale IT-Services zusammenführt.
 
-The target audience is:
+Die Zielgruppen sind:
 
-- CFO and finance business partners
-- CIO and IT leadership
-- Service owners
-- Operations managers
+- CFO und Finance Business Partner
+- CIO und IT-Leitung
+- Service Owner
+- Operations Manager
 
-## Analytical Scope
+## Analytischer Umfang
 
-This showcase focuses on five example services:
+Dieses Showcase konzentriert sich auf fünf Beispiel-Services:
 
 - VPN
 - Cloud Storage
@@ -38,67 +38,67 @@ This showcase focuses on five example services:
 - Identity & Access
 - Service Desk
 
-The reporting model covers:
+Das Reporting-Modell umfasst:
 
-- monthly service cost
-- monthly usage volume
-- user base by service
-- support ticket volume
-- request automation indicators
-- derived efficiency KPIs
+- monatliche Servicekosten
+- monatliche Nutzungsvolumen
+- Nutzerbasis je Service
+- Supportticket-Volumen
+- Kennzahlen zur Request-Automatisierung
+- abgeleitete Effizienz-KPIs
 
-## Source Systems In Scope
+## Berücksichtigte Quellsysteme
 
 ### SAP
 
-Used as the source for financial postings, including:
+SAP dient als Quelle für Finanzbuchungen, unter anderem für:
 
-- direct service cost
-- internal labor
-- software subscriptions
-- infrastructure or hosting charges
-- shared IT overhead
+- direkte Servicekosten
+- interne Personalkosten
+- Software-Abonnements
+- Infrastruktur- oder Hosting-Kosten
+- gemeinsame IT-Gemeinkosten
 
 ### Microsoft Dynamics
 
-Used as the source for:
+Dynamics dient als Quelle für:
 
-- service catalog attributes
-- service owner information
-- request activity summaries
-- operational context for automation and fulfillment
+- Attribute aus dem Servicekatalog
+- Informationen zu Service-Verantwortlichen
+- Zusammenfassungen von Request-Aktivitäten
+- operativen Kontext für Automatisierung und Fulfillment
 
-### Local SQL Databases
+### Lokale SQL-Datenbanken
 
-Used as the source for:
+Diese liefern:
 
-- monthly service usage metrics
-- monthly support ticket metrics
+- monatliche Kennzahlen zur Servicenutzung
+- monatliche Kennzahlen zu Supporttickets
 
-## Solution Approach
+## Lösungsansatz
 
-The BI design follows a pragmatic pattern:
+Das BI-Design folgt einem pragmatischen Muster:
 
-1. Standardize service identifiers across systems.
-2. Map SAP cost centers to services and cost buckets.
-3. Allocate shared IT costs using a transparent driver.
-4. Join cost, usage, and support activity into a monthly mart.
-5. Expose business-friendly reporting views for Power BI.
+1. Service-Identifikatoren werden systemübergreifend standardisiert.
+2. SAP-Cost-Center werden Services und Kostenarten zugeordnet.
+3. Gemeinkosten werden über einen transparenten Treiber verteilt.
+4. Kosten, Nutzung und Supportaktivität werden in einem monatlichen Mart zusammengeführt.
+5. Für Power BI werden fachlich verständliche Reporting Views bereitgestellt.
 
-## Assumptions
+## Annahmen
 
-- All values in this repository are dummy data.
-- Currency is represented in USD for simplicity.
-- Shared cost is allocated by active-user share.
-- Monthly granularity is sufficient for management reporting.
-- The sample SQL uses a PostgreSQL-style syntax for readability.
+- Alle Werte in diesem Repository sind Dummy-Daten.
+- Die Währung ist der Einfachheit halber USD.
+- Shared Cost wird anhand des Anteils aktiver User allokiert.
+- Monatliche Granularität ist für Management-Reporting ausreichend.
+- Das Beispiel-SQL verwendet aus Gründen der Lesbarkeit eine PostgreSQL-nahe Syntax.
 
-## Expected Business Value
+## Erwarteter Business-Nutzen
 
-With this model, management can:
+Mit diesem Modell kann das Management:
 
-- compare services on a common business reporting basis
-- identify services with rising cost pressure
-- challenge support-heavy processes
-- prioritize automation or contract optimization
-- improve budget discussions with service-level evidence
+- Services auf einer einheitlichen Reporting-Basis vergleichen
+- Services mit steigendem Kostendruck identifizieren
+- supportintensive Prozesse gezielt hinterfragen
+- Automatisierung oder Vertragsoptimierung priorisieren
+- Budgetdiskussionen mit servicebezogenen Fakten führen
