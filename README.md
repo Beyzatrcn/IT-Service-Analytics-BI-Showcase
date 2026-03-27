@@ -108,15 +108,15 @@ IT-Service-Analytics-BI-Showcase/
 3. Connect Power BI to the final reporting views.
 4. Use the DAX examples as a starting point for the dashboard model.
 
-## What A Hiring Manager Should See
+## Repository Highlights
 
-This portfolio project is designed to show:
+This repository demonstrates:
 
-- structured BI thinking from source to dashboard
-- comfort with finance and management reporting concepts
-- ability to document assumptions and governance
-- practical SQL modeling skills
-- clarity in stakeholder communication
+- end-to-end BI thinking from source systems to reporting outputs
+- integration of finance, service management, and operational usage data
+- clear KPI design for management reporting
+- realistic SQL transformations and reporting views
+- documented governance, allocation, and data quality logic
 
 ## Disclaimer
 
