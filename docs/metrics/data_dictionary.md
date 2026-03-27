@@ -96,6 +96,46 @@ Dieser Datenkatalog beschreibt die wichtigsten Quellentitäten sowie den finalen
 | tickets_per_100_users | numeric(14,2) | Ticketintensität relativ zur Nutzerbasis |
 | service_efficiency_index | numeric(14,2) | Portfolio-Kennzahl zur Service-Effizienz |
 
+## Reporting View: `vw_bi_service_yearly`
+
+| Feld | Typ | Beschreibung |
+|---|---|---|
+| report_year | integer | Berichtsjahr |
+| service_code | varchar(20) | Standardisierter Service-Identifier |
+| service_name | varchar(100) | Fachlicher Service-Name |
+| service_owner | varchar(100) | Verantwortlicher Owner |
+| service_category | varchar(50) | Service-Gruppe |
+| total_cost_chf | numeric(14,2) | Jährliche Gesamtkosten in CHF |
+| direct_cost_chf | numeric(14,2) | Jährliche direkte Kosten in CHF |
+| shared_cost_chf | numeric(14,2) | Jährlich allokierte Shared Costs in CHF |
+| avg_active_users | numeric(14,0) | Durchschnittliche aktive User im Jahr |
+| total_usage_volume | numeric(18,2) | Gesamte Nutzung im Jahr |
+| usage_unit | varchar(50) | Maßeinheit der Nutzung |
+| opened_tickets | bigint | Im Jahr eröffnete Tickets |
+| resolved_tickets | bigint | Im Jahr gelöste Tickets |
+| avg_sla_met_pct | numeric(6,2) | Durchschnittliche SLA-Erfüllungsquote |
+| total_requests | bigint | Jährliches Request-Volumen |
+| automated_requests | bigint | Jährlich automatisierte Requests |
+| avg_automation_rate_pct | numeric(6,2) | Durchschnittliche Automatisierungsquote |
+| avg_availability_pct | numeric(6,2) | Durchschnittliche Verfügbarkeit |
+| cost_per_user | numeric(14,2) | Jährliche Kosten geteilt durch durchschnittliche aktive User |
+| cost_per_ticket | numeric(14,2) | Jährliche Kosten geteilt durch gelöste Tickets |
+| tickets_per_100_users | numeric(14,2) | Jährliche Ticketintensität relativ zur Nutzerbasis |
+| avg_service_efficiency_index | numeric(14,2) | Durchschnittlicher Effizienzindex im Jahr |
+
+## Reporting View: `vw_bi_management_yearly`
+
+| Feld | Typ | Beschreibung |
+|---|---|---|
+| report_year | integer | Berichtsjahr |
+| portfolio_total_cost_chf | numeric(14,2) | Jährliche Portfoliokosten in CHF |
+| avg_portfolio_active_users | numeric(14,0) | Durchschnittliche aktive User im Portfolio |
+| portfolio_opened_tickets | bigint | Jährlich eröffnete Tickets im Portfolio |
+| portfolio_cost_per_avg_user | numeric(14,2) | Portfoliokosten je durchschnittlichem User |
+| portfolio_cost_per_ticket | numeric(14,2) | Portfoliokosten je gelöstem Ticket |
+| avg_service_efficiency_index | numeric(14,2) | Durchschnittlicher Effizienzindex über alle Services |
+| highest_cost_service | varchar(100) | Kostenintensivster Service im Jahr |
+
 ## Standard des fachlichen Schlüssels
 
 Der zentrale fachliche Schlüssel ist `service_code`. Alle Quellen werden vor der Reporting-Erstellung auf diesen Identifier ausgerichtet.

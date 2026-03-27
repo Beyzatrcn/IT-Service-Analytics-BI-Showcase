@@ -99,6 +99,7 @@ IT-Service-Analytics-BI-Showcase/
 4. Lokale SQL-Quellen liefern Nutzungs- und Ticketdaten auf Monatsebene.
 5. SQL-Transformationen erzeugen ein konsolidiertes Service-Monatsmodell.
 6. Reporting Views stellen die Daten für Power BI bereit.
+7. Zusätzlich stehen jährliche Reporting Views für Jahresvergleiche zur Verfügung.
 
 ## Lokales PostgreSQL-Setup fuer Power BI
 

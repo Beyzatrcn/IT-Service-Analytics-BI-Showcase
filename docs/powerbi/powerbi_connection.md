@@ -17,6 +17,8 @@ Alle Kostenfelder sind auf CHF ausgelegt und sollten in Power BI ebenfalls als S
 - `vw_bi_service_monthly`
 - `vw_bi_service_summary`
 - `vw_bi_management_overview`
+- `vw_bi_service_yearly`
+- `vw_bi_management_yearly`
 
 ## Empfohlene Vorgehensweise in Power BI
 
@@ -26,6 +28,12 @@ Alle Kostenfelder sind auf CHF ausgelegt und sollten in Power BI ebenfalls als S
 4. Datenbankname `it_service_analytics` eintragen.
 5. Mit Benutzername `postgres` und Passwort `postgres` verbinden.
 6. Die drei Reporting Views laden.
+
+Empfehlung:
+
+- Fuer Detailanalysen `vw_bi_service_monthly`
+- Fuer Jahresauswertungen `vw_bi_service_yearly`
+- Fuer Portfolio-KPIs je Jahr `vw_bi_management_yearly`
 
 ## Initiales Setup
 

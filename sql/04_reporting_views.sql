@@ -53,6 +53,38 @@ GROUP BY
     service_owner,
     service_category;
 
+CREATE OR REPLACE VIEW vw_bi_service_yearly AS
+SELECT
+    EXTRACT(YEAR FROM report_month)::INTEGER AS report_year,
+    service_code,
+    service_name,
+    service_owner,
+    service_category,
+    SUM(total_cost_chf) AS total_cost_chf,
+    SUM(direct_cost_chf) AS direct_cost_chf,
+    SUM(shared_cost_chf) AS shared_cost_chf,
+    ROUND(AVG(active_users), 0) AS avg_active_users,
+    SUM(usage_volume) AS total_usage_volume,
+    MAX(usage_unit) AS usage_unit,
+    SUM(opened_tickets) AS opened_tickets,
+    SUM(resolved_tickets) AS resolved_tickets,
+    ROUND(AVG(sla_met_pct), 2) AS avg_sla_met_pct,
+    SUM(total_requests) AS total_requests,
+    SUM(automated_requests) AS automated_requests,
+    ROUND(AVG(automation_rate_pct), 2) AS avg_automation_rate_pct,
+    ROUND(AVG(availability_pct), 2) AS avg_availability_pct,
+    ROUND(SUM(total_cost_chf) / NULLIF(AVG(active_users), 0), 2) AS cost_per_user,
+    ROUND(SUM(total_cost_chf) / NULLIF(SUM(resolved_tickets), 0), 2) AS cost_per_ticket,
+    ROUND((SUM(opened_tickets)::NUMERIC / NULLIF(AVG(active_users), 0)) * 100, 2) AS tickets_per_100_users,
+    ROUND(AVG(service_efficiency_index), 2) AS avg_service_efficiency_index
+FROM mart_service_monthly
+GROUP BY
+    EXTRACT(YEAR FROM report_month),
+    service_code,
+    service_name,
+    service_owner,
+    service_category;
+
 CREATE OR REPLACE VIEW vw_bi_management_overview AS
 WITH monthly_ranked_costs AS (
     SELECT
@@ -86,4 +118,41 @@ LEFT JOIN monthly_top_cost_service t
     ON m.report_month = t.report_month
 GROUP BY
     m.report_month;
+
+CREATE OR REPLACE VIEW vw_bi_management_yearly AS
+WITH yearly_ranked_costs AS (
+    SELECT
+        EXTRACT(YEAR FROM report_month)::INTEGER AS report_year,
+        service_name,
+        SUM(total_cost_chf) AS total_cost_chf,
+        ROW_NUMBER() OVER (
+            PARTITION BY EXTRACT(YEAR FROM report_month)
+            ORDER BY SUM(total_cost_chf) DESC
+        ) AS cost_rank
+    FROM mart_service_monthly
+    GROUP BY
+        EXTRACT(YEAR FROM report_month),
+        service_name
+),
+yearly_top_cost_service AS (
+    SELECT
+        report_year,
+        service_name AS highest_cost_service
+    FROM yearly_ranked_costs
+    WHERE cost_rank = 1
+)
+SELECT
+    EXTRACT(YEAR FROM m.report_month)::INTEGER AS report_year,
+    SUM(m.total_cost_chf) AS portfolio_total_cost_chf,
+    ROUND(AVG(m.active_users), 0) AS avg_portfolio_active_users,
+    SUM(m.opened_tickets) AS portfolio_opened_tickets,
+    ROUND(SUM(m.total_cost_chf) / NULLIF(AVG(m.active_users), 0), 2) AS portfolio_cost_per_avg_user,
+    ROUND(SUM(m.total_cost_chf) / NULLIF(SUM(m.resolved_tickets), 0), 2) AS portfolio_cost_per_ticket,
+    ROUND(AVG(m.service_efficiency_index), 2) AS avg_service_efficiency_index,
+    MAX(t.highest_cost_service) AS highest_cost_service
+FROM mart_service_monthly m
+LEFT JOIN yearly_top_cost_service t
+    ON EXTRACT(YEAR FROM m.report_month)::INTEGER = t.report_year
+GROUP BY
+    EXTRACT(YEAR FROM m.report_month);
 
