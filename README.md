@@ -70,11 +70,18 @@ IT-Service-Analytics-BI-Showcase/
 |   |-- metrics/
 |   |   |-- data_dictionary.md
 |   |   `-- kpi_definitions.md
+|   |-- architecture/
+|   |   |-- architecture_overview.md
+|   |   `-- it_service_bi_architecture.svg
 |   |-- powerbi/
 |   |   |-- dashboard_concept.md
-|   |   `-- dax_measures.md
+|   |   |-- dax_measures.md
+|   |   `-- powerbi_connection.md
 |   `-- sap/
 |       `-- sap_cost_mapping_logic.md
+|-- scripts/
+|   `-- setup_postgres.ps1
+|-- docker-compose.yml
 `-- sql/
     |-- 01_source_schema.sql
     |-- 02_sample_data.sql
@@ -90,6 +97,24 @@ IT-Service-Analytics-BI-Showcase/
 4. Lokale SQL-Quellen liefern Nutzungs- und Ticketdaten auf Monatsebene.
 5. SQL-Transformationen erzeugen ein konsolidiertes Service-Monatsmodell.
 6. Reporting Views stellen die Daten für Power BI bereit.
+
+## Lokales PostgreSQL-Setup fuer Power BI
+
+Das Repository enthaelt eine lokale PostgreSQL-Umgebung auf Docker-Basis. Damit kann Power BI direkt auf die Reporting Views zugreifen.
+
+Start der Datenbank und Laden aller SQL-Dateien:
+
+```powershell
+.\scripts\setup_postgres.ps1
+```
+
+Verbindungsdaten fuer Power BI:
+
+- Host: `localhost`
+- Port: `5432`
+- Datenbank: `it_service_analytics`
+- Benutzer: `postgres`
+- Passwort: `postgres`
 
 ## Zentrale Designprinzipien
 

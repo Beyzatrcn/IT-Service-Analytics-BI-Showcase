@@ -64,6 +64,13 @@ WITH monthly_ranked_costs AS (
             ORDER BY total_cost_usd DESC
         ) AS cost_rank
     FROM mart_service_monthly
+),
+monthly_top_cost_service AS (
+    SELECT
+        report_month,
+        service_name AS highest_cost_service
+    FROM monthly_ranked_costs
+    WHERE cost_rank = 1
 )
 SELECT
     m.report_month,
@@ -73,9 +80,9 @@ SELECT
     ROUND(SUM(m.total_cost_usd) / NULLIF(SUM(m.active_users), 0), 2) AS portfolio_cost_per_user,
     ROUND(SUM(m.total_cost_usd) / NULLIF(SUM(m.resolved_tickets), 0), 2) AS portfolio_cost_per_ticket,
     ROUND(AVG(m.service_efficiency_index), 2) AS avg_service_efficiency_index,
-    MAX(CASE WHEN r.cost_rank = 1 THEN r.service_name END) AS highest_cost_service
+    MAX(t.highest_cost_service) AS highest_cost_service
 FROM mart_service_monthly m
-LEFT JOIN monthly_ranked_costs r
-    ON m.report_month = r.report_month
+LEFT JOIN monthly_top_cost_service t
+    ON m.report_month = t.report_month
 GROUP BY
     m.report_month;
